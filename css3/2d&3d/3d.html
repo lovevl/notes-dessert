@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2D平面上的3d视觉效果</title>
+    <style>
+        .out{
+            margin: 100px auto;
+            width: 500px;
+            height: 500px;
+            background-color: #0da5d6;
+            transform: rotateY(-60deg);
+            /* 透视 :加给变换的父盒子*/
+            /* 设置的是用户的眼睛距离 平面的距离*/
+            /* 透视效果只是视觉上的呈现，并不是正真的3d*/
+            /* perspective: 400px;*/
+
+            /*可以让里面的子盒子保持3d 效果，加给父盒子 */
+            /* preseve-3d: 让子盒子 位于3d空间里面*/
+            /*flat： 子盒子被扁平化*/
+            transform-style: preserve-3d;
+        }
+        .in{
+            width: 300px;
+            height: 300px;
+            margin:100px auto;
+            background-color: aquamarine;
+            transform: rotateX(45deg) rotateY(90deg) ;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="out">
+    <div class="in"></div>
+</div>
+</body>
+</html>

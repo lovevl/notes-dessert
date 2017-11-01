@@ -1,0 +1,19 @@
+.go-index{
+    position: fixed;
+    top: 80px;
+    left: 0;
+    background-color: #5cb85c;
+    text-align: center;
+    width: 24px;
+    line-height: 16px;
+    z-index:999;
+}
+.go-index a{
+    font-family: "微软雅黑";
+    display: block;
+    width: 100%;
+    font-size: 0.83em;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+}

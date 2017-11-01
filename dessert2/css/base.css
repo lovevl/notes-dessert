@@ -1,0 +1,47 @@
+div,ul,li,body,h1,h2,h3,h4,h5,h6,::before,::after{
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-box-sizing: border-box;
+}
+body{
+    font-family: "Microsoft YaHei",sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #000;
+    background-color:  #fff;
+
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+ul{
+    list-style: none;
+}
+input,textarea{
+    border: none;
+    resize: none;
+    outline: none;
+    -webkit-appearance: none;
+}
+.clearfix::before,.clearfix::after{
+    content: "";
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+}
+[class^="png-icon-"],[class*=" png-icon-"]{
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}

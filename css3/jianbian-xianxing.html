@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>渐变-线性-径向-重复-应用</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{margin:0;padding:0;}
+        body{
+            background-color: #f7f7f7;
+        }
+        h1{
+            margin:40px 0;
+            text-align: center;
+        }
+        h1{
+            line-height: 1;
+            font-weight:normal;
+            font-size: 28px;
+        }
+        section{
+            overflow: hidden;
+        }
+        .main{
+            width: 1000px;
+            margin:0 auto;
+        }
+        .item{
+            float: left;
+            width: 210px;
+            height: 210px;
+            margin:0 30px 30px 0;
+            display: flex;
+            position: relative;
+            background-color: #fff;
+            box-shadow: 2px 2px 5px #ccc;
+        }
+
+        .item::after{
+            content:attr(data-title);
+            position: absolute;
+            top:0;
+            left:0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 210px;
+            height: 210px;
+            padding-top: 95px;
+            color: #fff;
+            text-align: center;
+            font-family: '微软雅黑';
+            font-size:14px;
+            word-wrap: break-word;
+            background-color: rgba(170,170,170,0);
+            z-index: -1;
+            transition: all 0.3s ease-in;
+        }
+        .item:hover::after{
+            background-color: rgba(170,170,170,0.6);
+            z-index: 100;
+        }
+
+        .main .item:nth-child(4n){
+            margin-right: 0;
+        }
+
+        .linear-gradient{
+            width: 190px;
+            height: 50px;
+            margin: auto;
+        }
+        
+        .item:nth-child(1) .linear-gradient{
+            background-image: linear-gradient(yellow,green);
+        }
+        .item:nth-child(2) .linear-gradient{
+            background-image: linear-gradient(yellow,green,red,blue);
+        }
+        .item:nth-child(3) .linear-gradient{
+            background-image: linear-gradient(to top,yellow,green);
+        }
+        .item:nth-child(4) .linear-gradient{
+            background-image: linear-gradient(to right,yellow,green);
+        }
+        .item:nth-child(5) .linear-gradient{
+            background-image: linear-gradient(to bottom,yellow,green);
+        }
+        .item:nth-child(6) .linear-gradient{
+            background-image: linear-gradient(90deg,yellow,green);
+        }
+        .item:nth-child(7) .linear-gradient{
+            background-image: linear-gradient(45deg,yellow,green);
+        }
+        .item:nth-child(8) .linear-gradient{
+            background-image: linear-gradient(0,yellow,green);
+        }
+        .item:nth-child(9) .linear-gradient{
+            background-image: linear-gradient(to left,yellow 30%,green);
+        }
+        .item:nth-child(10) .linear-gradient{
+            background-image: linear-gradient(to left,yellow 30%,green 40%);
+        }
+        .item:nth-child(11) .linear-gradient{
+            background-image: linear-gradient(to left,yellow 40%,green 40%);
+        }
+        .item:nth-child(12) .linear-gradient{
+            background-image: linear-gradient(to left,yellow 30%,green 40%,skyblue);
+        }
+        .item:nth-child(13) .linear-gradient{
+            background-image: linear-gradient(to left,yellow 30%,green 40%,skyblue 50%);
+        }
+
+        .radial-gradient{
+            width: 190px;
+            height: 190px;
+            margin: auto;
+        }
+        .radial:nth-child(1) .radial-gradient{
+            background-image: radial-gradient(yellow,green);
+        }
+        .radial:nth-child(2) .radial-gradient{
+            width: 190px;
+            height: 50px;
+            background-image: radial-gradient(yellow,green);
+        }
+        .radial:nth-child(3) .radial-gradient{
+            background-image: radial-gradient(20px at center center,yellow,green);
+        }
+        .radial:nth-child(4) .radial-gradient{
+            background-image: radial-gradient(20px at 20px 20px,yellow,green);
+        }
+        .radial:nth-child(5) .radial-gradient{
+            background-image: radial-gradient(150px at 80px 80px,yellow,green);
+        }
+        .radial:nth-child(6) .radial-gradient{
+            background-image: radial-gradient(150px 80px at center center,yellow,green);
+        }
+        .radial:nth-child(7) .radial-gradient{
+            background-image: radial-gradient(circle at center center,yellow,green);
+        }
+        .radial:nth-child(8) .radial-gradient{
+            width: 190px;
+            height: 50px;
+            background-image: radial-gradient(circle at center center,yellow,green);
+        }
+        .radial:nth-child(9) .radial-gradient{
+            background-image: radial-gradient(ellipse at center center,yellow,green);
+        }
+        .radial:nth-child(10) .radial-gradient{
+            width: 190px;
+            height: 50px;
+            background-image: radial-gradient(ellipse at center center,yellow, green);
+        }
+
+        .repeating-linear-gradient{
+            width: 200px;
+            height: 100px;
+            margin: auto;
+        }
+        .repeating-radial-gradient{
+            width: 200px;
+            height: 200px;
+            margin: auto;
+        }
+        .repeat:nth-child(1) .repeating-linear-gradient{
+            background-image: repeating-linear-gradient(yellow 5%,green 50%);
+        }
+        .repeat:nth-child(2) .repeating-linear-gradient{
+            background-image: repeating-linear-gradient(yellow 10%,green 50%);
+        }
+        .repeat:nth-child(3) .repeating-linear-gradient{
+            background-image: repeating-linear-gradient(yellow 25%,green 50%);
+        }
+        .repeat:nth-child(4) .repeating-radial-gradient{
+            background-image: repeating-radial-gradient(yellow 5%,green 50%);
+        }
+        .repeat:nth-child(5) .repeating-radial-gradient{
+            background-image: repeating-radial-gradient(yellow 10%,green 50%);
+        }
+        .repeat:nth-child(6) .repeating-radial-gradient{
+            background-image: repeating-radial-gradient(yellow 30%,green 50%);
+        }
+
+        .apply .gradient{
+            margin: auto;
+        }
+        .apply:nth-child(1) .gradient{
+
+            width: 180px;
+            height: 90px;
+            line-height: 90px;
+            color:#fff;
+            text-align: center;
+            background-color: aqua;
+            background-image: linear-gradient(to top,rgba(0,0,0,0.4),rgba(0,0,0,0));
+        }
+
+        .apply:nth-child(2) .gradient{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            line-height: 200px;
+            color:#fff;
+            text-align: center;
+            background-color: aqua;
+            background-image: radial-gradient(at 20px 20px,rgba(0,0,0,0),rgba(0,0,0,0.4));
+        }
+
+        .apply:nth-child(3) .gradient{
+            width: 200px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            color: #fff;
+            background-color: aqua;
+            background-image: linear-gradient(135deg, skyblue 25%, transparent 25% , transparent 50%, skyblue 50%, skyblue 75%,
+            transparent 75%, transparent 100%);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="go-index"><a href="../index.html">点我首页</a></div>
+<section>
+    <h1>线性linear-gradient</h1>
+    <div class="main">
+        <div class="item" data-title="(yellow,green)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(yellow,green,red,blue)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(to top,yellow,green)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(to right,yellow,green)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(to bottom,yellow,green)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(90deg,yellow,green)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(45deg,yellow,green)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(0,yellow,green)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(to left,yellow 30%,green)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(to left,yellow 30%,green 40%)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(to left,yellow 40%,green 40%)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(to left,yellow 30%,green 40%,skyblue)">
+            <div class="linear-gradient"></div>
+        </div>
+        <div class="item" data-title="(to left,yellow 30%,green 40%,skyblue 50%)">
+            <div class="linear-gradient"></div>
+        </div>
+    </div>
+</section>
+<section>
+    <h1>径向radial-gradient</h1>
+    <div class="main">
+        <div class="item radial" data-title="(yellow,green)">
+            <div class="radial-gradient"></div>
+        </div>
+        <div class="item radial" data-title="(yellow,green)">
+            <div class="radial-gradient"></div>
+        </div>
+        <div class="item radial" data-title="(20px at center center,yellow,green)">
+            <div class="radial-gradient"></div>
+        </div>
+        <div class="item radial" data-title="(20px at 20px 20px,yellow,green)">
+            <div class="radial-gradient"></div>
+        </div>
+        <div class="item radial" data-title="(150px at 80px 80px,yellow,green)">
+            <div class="radial-gradient"></div>
+        </div>
+        <div class="item radial" data-title="(150px 80px at center center,yellow,green)">
+            <div class="radial-gradient"></div>
+        </div>
+        <div class="item radial" data-title="(circle at center center,yellow,green)">
+            <div class="radial-gradient"></div>
+        </div>
+        <div class="item radial" data-title="(circle at center center,yellow,green)">
+            <div class="radial-gradient"></div>
+        </div>
+        <div class="item radial" data-title="(ellipse at center center,yellow, green)">
+            <div class="radial-gradient"></div>
+        </div>
+        <div class="item radial" data-title="(ellipse at center center,yellow, green)">
+            <div class="radial-gradient"></div>
+        </div>
+    </div>
+</section>
+<section>
+    <h1>重复repeating-(linear | radial)-gradient</h1>
+    <div class="main">
+        <div class="item repeat" data-title="linear-(yellow 5%,green 50%)">
+            <div class="repeating-linear-gradient"></div>
+        </div>
+        <div class="item repeat" data-title="linear-(yellow 10%,green 50%)">
+            <div class="repeating-linear-gradient"></div>
+        </div>
+        <div class="item repeat" data-title="linear-(yellow 25%,green 50%)">
+            <div class="repeating-linear-gradient"></div>
+        </div>
+        <div class="item repeat" data-title="radial-(yellow 5%,green 50%)">
+            <div class="repeating-radial-gradient"></div>
+        </div>
+        <div class="item repeat" data-title="radial-(yellow 10%,green 50%)">
+            <div class="repeating-radial-gradient"></div>
+        </div>
+        <div class="item repeat" data-title="radial-(yellow 30%,green 50%)">
+            <div class="repeating-radial-gradient"></div>
+        </div>
+</section>
+<section>
+    <h1>应用</h1>
+    <div class="main">
+        <div class="item apply" data-title="(to top,rgba(0,0,0,0.4),rgba(0,0,0,0))">
+            <div class="gradient">按钮</div>
+        </div>
+        <div class="item apply" data-title="">
+            <div class="gradient"></div>
+        </div>
+        <div class="item apply" data-title="进度条">
+            <div class="gradient"></div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

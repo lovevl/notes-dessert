@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>html5特性</title>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+<div class="scrollbox"></div>
+<div class="go-index"><a href="../index.html">点我首页</a></div>
+<div class="catalog">
+    <div class="catalog-box">
+        <h5>目录结构</h5>
+        <div class="catalog-box-scroll">
+            <p><a href="#new_selector_id">新的选择器</a></p>
+            <p><a href="#classlist_id">classList 列出所有class值</a></p>
+            <p><a href="#forward_back_id">浏览的前进后退刷新</a></p>
+            <p><a href="#manual_opt_id">手动添加历史记录到浏览器中</a></p>
+            <p><a href="#fullsreen_show_id">全屏显示</a></p>
+            <p><a href="#webstorage_id">webStorage 数据缓冲保存</a></p>
+            <p><a href="#drap_drop_id">drag&drop 网页内元素拖拽</a></p>
+        </div>
+    </div>
+</div>
+<section class="flex-direction">
+    <h3>html5的一些特性</h3>
+    <div class="wrap-box">
+        <header id="new_selector_id">新的选择器</header>
+        <div class="wrap-content">
+            <h5>获取选择器第一个元素</h5>
+            <p>var first_item = document.querySelector('.item');</p>
+            <h5>获取选择器所有元素</h5>
+            <p>items = document.querySelectorAll('ul > .item');</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="classlist_id">classList 列出所有class值</header>
+        <div class="wrap-content">
+            <h5>remove()删除一个class，add()添加一个class，contains()判断有没有包含一个class,toggle('class',boolean)true时添加class，false删除</h5>
+            <p>var liElements = document.querySelectorAll('.nav > li');</p>
+            <p>
+                for (var i = 0; i &lt; liElements.length; i++) {
+            </p>
+            <p>
+                &nbsp; console.log(liElements[i].classList);
+            </p>
+            <p>
+                &nbsp; liElements.item(i).classList.remove(&#39;active&#39;);
+            </p>
+            <p>
+                }
+            </p>
+            <p>
+                this.classList.add(&#39;active&#39;);
+            </p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="forward_back_id">浏览的前进后退刷新</header>
+        <div class="wrap-content">
+            <h5>前进</h5>
+            <p>window.history.forward();</p>
+            <h5>后退</h5>
+            <p>window.history.back();</p>
+            <h5>刷新</h5>
+            <p>window.history.go();  //go函数可以传入一个地址，不传默认是刷新</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="manual_opt_id">手动添加历史记录到浏览器中</header>
+        <div class="wrap-content">
+            <a href="../link/history.html" target="_blank">示例链接</a>
+            <div class="box-code">
+                <p>
+                    &nbsp;&nbsp;(function() {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; var listElement = document.querySelector(&#39;#list&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; for (var title in data) {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; var liElement = document.createElement(&#39;li&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; liElement.innerHTML = &#39;⭐️&#39; + title;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; liElement.setAttribute(&#39;data-title&#39;, title);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; listElement.appendChild(liElement);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; var liElements = document.querySelectorAll(&#39;#list&gt;li&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; var content = document.querySelector(&#39;#content&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; <span class="annotation">// 注册一个元素事件</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; for (var i = 0; i &lt; liElements.length; i++) {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; liElements[i].addEventListener(&#39;click&#39;, function() {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="annotation">// 拿到被点击title</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; var title = this.dataset[&#39;title&#39;];
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="annotation">// 赋值</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; content.innerHTML = data[title];
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="annotation">// 操作历史记录</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (window.history &amp;&amp; history.pushState) {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="annotation">// 添加一个新的历史记录</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; history.pushState(title, &#39;title没有任何浏览器支持&#39;, &#39;?t=&#39; + title);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } else {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; console.log(&#39;不支持&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; });
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; <span class="annotation">// 当我们在伪造的访问历史中前进或后退时会执行一个popstate事件</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; window.addEventListener(&#39;popstate&#39;, function(e) {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; content.innerHTML = data[e.state];
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; });
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; <span class="annotation">// 第一次请求过来 获取地址栏中的t参数</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; <span class="annotation">// window.location可以拿到当前网页中跟地址相关的信息</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; var search = window.location.search; // ?t=jkaljdksfla
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; <span class="annotation">// 如果地址栏中的地址有中文，会以URL编码方式呈现</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp;<span class="annotation"> // decodeURI 可以转换到之前中文</span><span class="annotation">
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; var title = search.split(&#39;=&#39;)[1]; // [&#39;?t&#39;,&#39;jkaljdksfla&#39;]
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; if (title) {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; <span class="annotation">// 有值 decodeURI作用就是从URL编码转换到之前的状态</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; console.log(decodeURI(title));
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; content.innerHTML = data[decodeURI(title)];
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; })();
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+        <div class="wrap-box">
+            <header id="fullsreen_show_id">全屏显示</header>
+            <div class="wrap-content">
+                <a href="../link/fullsreen.html" target="_blank">示例链接</a>
+                <div class="box-code">
+                <p>
+                    &nbsp; &nbsp; var h3 = document.querySelector(&#39;#title_1&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; var p = document.querySelector(&#39;#content_1&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; h3.addEventListener(&#39;click&#39;, function(e) {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; if (p.webkitRequestFullScreen)
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p.webkitRequestFullScreen();
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; else
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; console.log(&#39;不支持&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; e.preventDefault();
+                </p>
+                <p>
+                    &nbsp; &nbsp; });
+                </p>
+                </div>
+            </div>
+        </div>
+        <div class="wrap-box">
+            <header id="webstorage_id">webStorage可用于做数据缓冲保存</header>
+            <div class="wrap-content">
+                <div class="box-code">
+                    <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;var btnSet = document.querySelector(&#39;#btn_set&#39;);
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; var btnGet = document.querySelector(&#39;#btn_get&#39;);
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; var txtValue = document.querySelector(&#39;#txt_value&#39;);
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; btnGet.addEventListener(&#39;click&#39;, function() {
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;if (window.sessionStorage)
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;txtValue.value = sessionStorage.getItem(&#39;key1&#39;)
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">// txtValue.value = sessionStorage[&#39;key1&#39;];</span>
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; });
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; btnSet.addEventListener(&#39;click&#39;, function() {
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">// sessionStorage.setItem(&#39;key1&#39;, txtValue.value);</span>
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;sessionStorage[&#39;key1&#39;] = txtValue.value;
+                    </p>
+                    <p>
+                        &nbsp; &nbsp; });
+                    </p>
+                </div>
+            </div>
+        </div>
+    <div class="wrap-box">
+        <header id="drap_drop_id">drag&drop 网页内元素拖拽动作</header>
+        <div class="wrap-content">
+            <a href="../link/drag&drop.html" target="_blank">示例链接</a>
+        </div>
+    </div>
+</section>
+</body>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        createNum(".box-code");
+        catalogInit(".catalog");
+    }
+</script>
+</html>

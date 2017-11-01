@@ -1,0 +1,235 @@
+/*骨架begin*/
+body{
+    font-family: "微软雅黑";
+    font-size: 14px;
+    background-color: #f7f7f7;
+}
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+h3{
+    margin:10px 0;
+    text-align: center;
+    font-size:20px;
+}
+section{
+    width: 1000px;
+    margin: 0 auto;
+}
+.wrap-box{
+    margin-bottom: 20px;
+    background-color: rgba(69, 255, 11, 0.1);
+    box-shadow: 2px 2px 5px #ddd;
+}
+.wrap-box header{
+    height: 30px;
+    padding-left:10px;
+    color: #ff163b;
+    font-size:18px;
+    line-height: 30px;
+    font-weight: normal;
+    background-color: #eee;
+}
+.wrap-content{
+    padding:10px;
+    background-color: #fff;
+    background-clip: border-box;
+}
+.wrap-content h5{
+    margin: 0;
+    font-weight: normal;
+    font-size: 14px;
+    color: #456eff;
+}
+.wrap-content{
+    font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+    font-size: 14px;
+    line-height: 25px;
+}
+/*黑色代码div背景*/
+.box-code{
+    font-size: 14px;
+    line-height: 20px;
+    position: relative;
+    background-color: #272822;
+    margin-bottom: 5px;
+    padding: 16px 45px;
+}
+.box-code p{
+    margin: 0;
+    color: #66D9EF;
+}
+.annotation{
+    color: #F92659;
+}
+.box-code .order-number{
+    top:16px;
+    left: 15px;
+    background-color: rgba(102, 217, 239, 0.2);
+}
+.order-number{
+    position: absolute;
+    width: 25px;
+    text-align: center;
+}
+.order-number p{
+    color: #fff;
+}
+.scrollbox{
+    opacity: 0;
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: url(../img/scroll_top.png) no-repeat center center;
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+/* 骨架end*/
+/*基础begin*/
+p{
+    margin: 5px 0;
+}
+.big-span{
+    font-size: 18px;
+}
+.blank-1{
+    margin-left: 1em;
+}
+.blank-2{
+    margin-left: 2em;
+}
+.blank-3{
+    margin-left: 3em;
+}
+.blank-4{
+    margin-left: 4em;
+}
+.blank-5{
+    margin-left: 5em;
+}
+/*基础end*/
+h5:target,header:target{
+    color: #5cb85c;
+}
+
+.cut-off-line{
+    height: 2px;
+    width: 100%;
+    background-color: #b92c28;
+    margin: 45px 0;
+}
+
+/*灰白间隔代码div背景*/
+.interval-line-code{
+    position: relative;
+    padding-left :25px;
+}
+.interval-line-code>p:nth-child(2n+1),.interval-line-code .order-number>p:nth-child(2n+1){
+    background-color: #f4f4f4;
+}
+.interval-line-code p{
+    margin: 0;
+}
+.interval-line-code .order-number{
+    top:0;
+    left:0;
+}
+.interval-line-code .order-number p{
+    color: #8f8f8f;
+}
+
+/*目录结构*/
+.catalog{
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 54px;
+    height: 60px;
+    background: url(../img/arrow_right.png) no-repeat center center;
+    background-size: 50px 40px;
+    background-color: #5cb85c;
+    z-index: 999;
+    transition: all 0.5s;
+}
+.catalog:hover{
+    background:none;
+    background-color:transparent;
+}
+
+.catalog:hover .catalog-box{
+    box-shadow: 2px 2px 10px #a9a9a9;
+}
+.catalog-box{
+    position: absolute;
+    top:0;
+    right: 54px;
+    line-height: 24px;
+    display: inline-block;
+    box-sizing: border-box;
+    transition: all 0.3s;
+}
+.catalog-box > h5{
+    position: absolute;
+    margin: 0;
+    padding: 0 5px;
+    top:-24px;
+    left: 0;
+    /*width: 50px;*/
+    height: 24px;
+    color: #fff;
+    background-color: #5cb85c;
+}
+.catalog-box-scroll{
+    /*min-width: 60px;*/
+    white-space:nowrap;
+    max-height: 408px;
+    background-color: #fff;
+}
+.catalog-box-scroll p{
+    padding: 0 5px;
+    margin: 0;
+}
+.catalog-box-scroll a{
+    display: block;
+    height: 24px;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+.catalog-box-scroll p:hover{
+    color: #fff;
+    background-color: #5cb85c;
+}
+.catalog-box-scroll::-webkit-scrollbar{
+    width: 5px;
+    background-color: #5cb85c;
+}
+.catalog-box-scroll::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: #2aabd2;
+}
+/*.catalog::-webkit-scrollbar-track{*/
+/*background-color: #b92c28;*/
+/*}*/
+
+/*点我首页*/
+.go-index{
+    position: fixed;
+    top: 120px;
+    left: 0;
+    background-color: #5cb85c;
+    text-align: center;
+    width: 54px;
+    height: 24px;
+    line-height: 24px;
+    z-index: 999;
+}
+.go-index a{
+    font-size: 0.83em;
+    text-decoration: none;
+    color: #fff;
+}

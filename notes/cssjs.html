@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>css，js笔记</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="scrollbox"></div>
+<div class="go-index"><a href="../index.html">点我首页</a></div>
+<div class="catalog" id="catalog_id">
+    <div class="catalog-box" id="catalog_box_id">
+        <h5>目录结构</h5>
+        <div class="catalog-box-scroll" id="catalog_s_box_id">
+            <p><a href="#font_id">网页显示代码的推荐使用字体</a></p>
+            <p><a href="#get_style_attr_id">js获取属性值兼容性方法函数</a></p>
+            <p><a href="#get_scroll_id">js获取浏览器滚动多少像素的兼容性方法函数</a></p>
+            <p><a href="#get_clientwidth_id">js获取浏览器可视区域大小的兼容性方法函数</a></p>
+            <p><a href="#offset_id">offset家族</a></p>
+            <p><a href="#client_id">client家族</a></p>
+            <p><a href="#event_attr_id">event事件对象属性</a></p>
+            <p><a href="#prevent_drag_id">防止网页内文字选择拖动</a></p>
+            <p><a href="#selection_text_id">js选中文字，实现点击复制</a></p>
+            <p><a href="#scroll_pseudo_id">css滚动条的伪类</a></p>
+        </div>
+    </div>
+</div>
+<section class="flex-direction">
+    <h3>CSS，JS相关笔记</h3>
+    <div class="wrap-box">
+        <header id="font_id">网页显示代码的推荐使用字体</header>
+        <div class="wrap-content">
+            <div class="font-code interval-line-code">
+                <p>font-family: Monaco, Menlo, Consolas, "Courier New", monospace;</p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="get_style_attr_id">js获取属性值兼容性方法函数</header>
+        <div class="wrap-content">
+            <div class="font-code interval-line-code">
+                <p>
+                    function getStyle(obj,attr){
+                </p>
+                <p>
+                    &nbsp; &nbsp; if(obj.currentStyle){
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; return obj.currentStyle[attr];
+                </p>
+                <p>
+                    &nbsp; &nbsp; }else{
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; return window.getComputedStyle(obj,null)[attr];
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="get_scroll_id">js获取浏览器滚动多少像素的兼容性方法函数</header>
+        <div class="wrap-content">
+            <div class="font-code interval-line-code">
+                <p>
+                    function &nbsp;scroll() {
+                </p>
+                <p>
+                    &nbsp; &nbsp; if (window.pageYOffset != null) {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; return {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; top: window.pageYOffset,
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left: window.pageXOffset
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; } else if (document.compatMode == &quot;CSS1Compat&quot;) {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; return {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; top: window.documentElement.scrollTop,
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left: window.documentElement.scrollLeft
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; } else {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; return {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; top: window.body.scrollTop,
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; left: window.body.scrollLeft
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    }
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="get_clientwidth_id">js获取浏览器可视区域大小的兼容性方法函数</header>
+        <div class="wrap-content">
+            <div class="font-code interval-line-code">
+                <p>
+                    function client() {
+                </p>
+                <p>
+                    &nbsp; &nbsp; if(window.innerWidth != null) &nbsp;// ie9 + &nbsp;最新浏览器
+                </p>
+                <p>
+                    &nbsp; &nbsp; {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; return {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; width: window.innerWidth,
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; height: window.innerHeight
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; else if(document.compatMode === &quot;CSS1Compat&quot;) &nbsp;// 标准浏览器
+                </p>
+                <p>
+                    &nbsp; &nbsp; {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; return {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; width: document.documentElement.clientWidth,
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; height: document.documentElement.clientHeight
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; return { &nbsp; // 怪异浏览器
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; width: document.body.clientWidth,
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; height: document.body.clientHeight
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    }
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="offset_id">offset家族</header>
+        <div class="wrap-content">
+            <p>offsetWidth = width + border + padding</p>
+            <p>不能用div.style.width 因为这个只能获取行内值。但可以使用 <a href="#get_style_attr_id">getStyle(obj,attr)</a></p>
+            <p>offsetLeft：返回距离上级盒子（最近的带有定位（absolute，relative））左边的位置，如果都没有定位则以body为准</p>
+            <p>offsetParent：返回该对象最近的带有定位（absolute，relative）的祖先级。</p>
+            <h5>offsetLeft，offsetTop与style.left，style.top的区别:</h5>
+            <p>1. offsetLeft和offsetTop返回的是数字。style.top返回的是带有"px"的字符串。</p>
+            <p>2. offsetLeft可以返回没有定位的盒子距离最近的带有定位盒子的位置，只有定位的盒子才有style.left</p>
+            <p>3. offsetLeft只读，style.left可写</p>
+            <p>4. style.left只能得到行内值</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="client_id">client家族</header>
+        <div class="wrap-content">
+            <p>clientWidth = width + padding  //不包含border</p>
+            <p>scrollWidth = 内容的大小</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="event_attr_id">event事件对象属性</header>
+        <div class="wrap-content">
+            <p>data ： 返回拖拽对象的URL字符串(dragDrop)</p>
+            <p>width : 该窗口或框架的宽度</p>
+            <p>height : 该窗口或框架的高度</p>
+            <p>pageX : 光标相对于该网页的水平位置（ie无）</p>
+            <p>pageY : 光标相对于该网页的垂直位置（ie无）</p>
+            <p>screenX : 光标相对于该屏幕的水平位置</p>
+            <p>screenY : 光标相对于该屏幕的垂直位置</p>
+            <p>target : 该事件被传送到的对象</p>
+            <p>type : 事件的类型</p>
+            <p>clientX : 光标相对于该浏览器可视区域的水平位置</p>
+            <p>clientY : 光标相对于该浏览器可视区域的垂直位置</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="prevent_drag_id" class="djkdf">防止网页内文字选择拖动</header>
+        <div class="wrap-content">
+            <div class="font-code interval-line-code">
+                <p>window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();</p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="selection_text_id">js选中文字，实现点击复制</header>
+        <div class="wrap-content">
+            <div class="font-code interval-line-code">
+                <p>
+                    if(window.getSelection){&nbsp;
+                </p>
+                <p>
+                    &nbsp; &nbsp; txt = window.getSelection().toString(); &nbsp; // 转换为字符串
+                </p>
+                <p>
+                    } else {
+                </p>
+                <p>
+                    &nbsp; &nbsp; txt = document.selection.createRange().text; &nbsp; // ie 的写法
+                </p>
+                <p>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="scroll_pseudo_id">css滚动条的伪类</header>
+        <div class="wrap-content">
+            <div class="font-code interval-line-code">
+                <p>::-webkit-scrollbar  滚动条的整体颜色</p>
+                <p>::-webkit-scrollbar-track  滚动条的背景色</p>
+                <p>::-webkit-scrollbar-thumb  滚动条的划动条的颜色  </p>
+            </div>
+        </div>
+    </div>
+    <!--<div class="wrap-box">-->
+        <!--<header>js获取浏览器滚动多少像素的兼容性方法</header>-->
+        <!--<div class="wrap-content">-->
+            <!--<div class="font-code interval-line-code">-->
+                <!--<p>font-family: Monaco, Menlo, Consolas, "Courier New", monospace;</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</section>
+
+
+</body>
+<script type="text/javascript" src="../dessert2/js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        createNum(".interval-line-code");
+        catalogInit(".catalog");
+    }
+</script>
+</html>

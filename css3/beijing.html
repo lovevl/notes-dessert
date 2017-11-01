@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>背景</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        div[class^='image']{
+            position: relative;
+            margin:40px 30px;
+            width: 200px;
+            height: 200px;
+        }
+        span{
+            position: absolute;
+            top: 250px;
+            left:0;
+            word-wrap: break-word;
+        }
+        .image{
+            float: left;
+            padding: 20px;
+            border: 3px dashed orangered;
+            background-color: aquamarine;
+            background-image: url(images/bg.jpg) ;
+            background-repeat: no-repeat;
+        }
+        .image1{
+             float: left;
+             padding: 20px;
+             border: 3px dashed orangered;
+             background-clip: content-box;
+             background-color: aquamarine;
+             background-image: url(images/bg.jpg) ;
+             background-repeat: no-repeat;
+         }
+        .image2{
+            float: left;
+            padding: 20px;
+            border: 3px dashed orangered;
+            background-clip: border-box;
+            background-color: aquamarine;
+            background-image: url(images/bg.jpg) ;
+            background-repeat: no-repeat;
+            background-origin: border-box;
+        }
+        .image3{
+            float: left;
+            padding: 20px;
+            border: 3px dashed orangered;
+            background-color: aquamarine;
+            background-image: url(images/bg.jpg) ;
+            background-repeat: no-repeat;
+            background-clip: border-box;
+            background-origin: content-box;
+        }
+
+        .image4{
+            float: left;
+            padding: 20px;
+            border: 3px dashed orangered;
+            background-color: aquamarine;
+            background-image: url(images/bg.jpg) ;
+            background-repeat: no-repeat;
+            background-clip: border-box;
+            background-origin: border-box;
+            background-size: cover;
+        }
+
+        .image5{
+            width: 250px;
+            float: left;
+            padding: 20px;
+            border: 3px dashed orangered;
+            background-color: aquamarine;
+            background-image: url(images/bg.jpg) ;
+            background-repeat: no-repeat;
+            background-clip: border-box;
+            background-origin: border-box;
+            background-size: cover;
+        }
+        .image6{
+            width: 250px;
+            float: left;
+            padding: 20px;
+            border: 3px dashed orangered;
+            background-color: aquamarine;
+            background-image: url(images/bg.jpg) ;
+            background-repeat: no-repeat;
+            background-clip: border-box;
+            background-origin: border-box;
+            background-size: contain;
+        }
+        .image7{
+            width: 250px;
+            float: left;
+            padding: 20px;
+            border: 3px dashed orangered;
+            background-color: aquamarine;
+            background-image: url(images/bg.jpg) ;
+            background-repeat: no-repeat;
+            background-clip: border-box;
+            background-origin: border-box;
+            background-size: 100% auto;
+        }
+        .image8{
+            width: 250px;
+            float: left;
+            padding: 20px;
+            border: 3px dashed orangered;
+            background-color: aquamarine;
+            background-image: url(images/bg.jpg) ;
+            background-repeat: no-repeat;
+            background-clip: border-box;
+            background-origin: border-box;
+            background-size: auto 100% ;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="go-index"><a href="../index.html">点我首页</a></div>
+    <div class="image"><span>默认</span></div>
+    <div class="image1"><span>background-clip: content-box;</span></div>
+    <div class="image2"><span>background-clip: border-box; background-origin: border-box;</span></div>
+    <div class="image3"><span>background-clip: border-box; background-origin: content-box;</span></div>
+    <div class="image4"><span>background-clip: border-box; background-origin: border-box; background-size: cover;</span></div>
+    <div class="image5"><span>background-clip: border-box;<br/>background-origin: border-box;<br/>background-size: cover;</span></div>
+    <div class="image6"><span>background-clip: border-box;<br/>background-origin: border-box;<br/>background-size: contain;</span></div>
+    <div class="image7"><span>background-clip: border-box;<br/>background-origin: border-box;<br/>background-size: 100% auto;</span></div>
+    <div class="image8"><span>background-clip: border-box;<br/>background-origin: border-box;<br/>background-size: auto 100% ;</span></div>
+</body>
+</html>

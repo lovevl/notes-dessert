@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>边框圆角</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{margin:0;padding:0;}
+        body{
+            background-color: #f7f7f7;
+        }
+        header{
+            margin:40px 0;
+            text-align: center;
+        }
+        header h1{
+            line-height: 1;
+            font-weight:normal;
+            font-size: 28px;
+        }
+        .main{
+            width: 1000px;
+            margin:0 auto;
+
+        }
+        .item{
+            float: left;
+            width: 210px;
+            height: 210px;
+            margin:0 30px 30px 0;
+            display: flex;
+            position: relative;
+            background-color: #fff;
+            box-shadow: 2px 2px 5px #ccc;
+        }
+
+        .item::after{
+            content:attr(data-title);
+            position: absolute;
+            top:0;
+            left:0;
+            width: 210px;
+            height: 210px;
+            color: #fff;
+            text-align: center;
+            font-family: '微软雅黑';
+            line-height:210px;
+            font-size:20px;
+            background-color: rgba(170,170,170,0);
+            z-index: -1;
+            transition: all 0.3s ease-in;
+        }
+        .item:hover::after{
+            background-color: rgba(170,170,170,0.6);
+            z-index: 100;
+        }
+
+        .main .item:nth-child(4n){
+            margin-right: 0;
+        }
+
+        .border-radius{
+            margin:auto;;
+            width: 180px;
+            height: 180px;
+            border:1px solid red;
+        }
+
+        .item:nth-child(1) .border-radius{
+            border-radius: 90px;
+        }
+
+        .item:nth-child(2) .border-radius{
+            border-radius: 90px 90px 0 0;
+        }
+
+        .item:nth-child(3) .border-radius{
+            height: 90px;
+            border-radius: 90px 90px 0 0;
+        }
+        .item:nth-child(4) .border-radius{
+            border-radius: 90px 0 0 0;
+        }
+        .item:nth-child(5) .border-radius{
+            width: 90px;
+            height: 90px;
+            border-radius: 90px 0 0 0;
+        }
+        .item:nth-child(6) .border-radius{
+            height: 90px;
+            border-radius: 90px / 45px;
+        }
+        .item:nth-child(7) .border-radius{
+            width: 90px;
+            border-radius: 45px / 90px;
+        }
+        .item:nth-child(8) .border-radius{
+            height: 45px;
+            border-radius: 90px 90px 0 0 / 45px 45px 0 0;
+        }
+        .item:nth-child(9) .border-radius{
+            width: 45px;
+            border-radius: 45px 0 0 45px / 90px 0 0 90px;
+        }
+        .item:nth-child(10) .border-radius{
+            width: 45px;
+            height: 90px;
+            border-radius: 45px 0 0 0 / 90px 0 0 0;
+        }
+        .item:nth-child(11) .border-radius{
+            width: 40px;
+            height: 40px;
+            border: 70px solid red;
+            border-radius: 90px;
+        }
+        .item:nth-child(12) .border-radius{
+            width: 40px;
+            height: 40px;
+            border:70px solid red;
+            border-radius: 60px;
+        }
+        .item:nth-child(13) .border-radius{
+            width: 60px;
+            height: 60px;
+            border:60px solid red;
+            border-radius: 90px 0 0 0;
+        }
+        .item:nth-child(14) .border-radius{
+            width: 60px;
+            height: 60px;
+            border:60px solid red;
+            border-radius: 90px 0 90px 0;
+        }
+        .item:nth-child(15) .border-radius{
+            width: 0;
+            height: 0;
+            border-style:solid;
+            border-width:90px;
+            border-color:red green yellow blue;
+        }
+        .item:nth-child(16) .border-radius{
+            width: 0;
+            height: 0;
+            border-style:solid;
+            border-width:90px;
+            border-color:red green yellow blue;
+            border-right-color: transparent;
+        }
+        .item:nth-child(17) .border-radius{
+            width: 0;
+            height: 0;
+            border: 90px solid red;
+            border-right-color: transparent;
+            border-radius: 90px;
+        }
+        .item:nth-child(18) .border-radius{
+            width: 0;
+            height: 0;
+            border: 90px solid red;
+            border-color: transparent;
+            border-right-color: red;
+            border-radius: 90px;
+        }
+        .item:nth-child(19) .border-radius{
+            width: 180px;
+            height: 0;
+            border-top-width:90px;
+            border-style:solid;
+            border-top-color: red;
+            border-bottom-width:90px;
+            border-bottom-color: green;
+            -webkit-border-radius:90px;
+            -moz-border-radius:90px;
+            border-radius:90px;
+        }
+        .item:nth-child(20) .border-radius{
+            width: 180px;
+            height: 90px;
+            border-bottom-style:solid;
+            border-bottom-width:90px;
+            border-bottom-color: green;
+            background-color: red;
+            -webkit-border-radius:90px;
+            -moz-border-radius:90px;
+            border-radius:90px;
+        }
+        .item:nth-child(21) .border-radius{
+            position: relative;
+            width: 180px;
+            height: 0;
+            border-top-width:90px;
+            border-style:solid;
+            border-top-color: red;
+            border-bottom-width:90px;
+            border-bottom-color: green;
+            -webkit-border-radius:90px;
+            -moz-border-radius:90px;
+            border-radius:90px;
+        }
+
+        .item:nth-child(21) .border-radius::before,
+        .item:nth-child(21) .border-radius::after{
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 35px solid green;
+            top:50%;
+            margin-top:-45px;
+            border-radius: 90px;
+        }
+
+        .item:nth-child(21) .border-radius::before{
+            background-color: red;
+            border-color:green;
+            left:0;
+        }
+
+        .item:nth-child(21) .border-radius::after{
+            background-color: green;
+            border-color:red;
+            right:0;
+        }
+
+        .item:nth-child(22) .border-radius{
+            width: 0;
+            height: 0;
+            border-width: 90px;
+            border-style: solid;
+            border-color:transparent;
+            border-top-color: red;
+            border-radius: 90px;
+            -webkit-transform: rotate(45deg);
+        }
+
+
+        .item:nth-child(23) .border-radius{
+            width: 120px;
+            height: 120px;
+            border: 30px solid red;
+            border-right-color: green;
+            border-left-color: green;
+            border-radius: 90px;
+            -webkit-transform: rotate(45deg);
+        }
+        .item:nth-child(24) .border-radius{
+            width: 120px;
+            height: 120px;
+            border: 30px solid red;
+            border-left-color: green;
+            border-top-color: green;
+            border-radius: 90px;
+            -webkit-transform: rotate(45deg);
+        }
+
+        .item:nth-child(25) .border-radius{
+            width: 120px;
+            height: 120px;
+            border: 30px solid red;
+            border-right-color: transparent;
+            border-left-color: transparent;
+            border-radius: 90px;
+            -webkit-transform: rotate(45deg);
+            position: relative;
+        }
+
+        .item:nth-child(25) .border-radius::before{
+            content: '';
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin-top:-20px;
+            margin-left: -20px;
+            width: 0;
+            height: 0;
+            border: 20px solid red;
+            border-right-color: transparent;
+            border-left-color: transparent;
+            border-radius: 90px;
+        }
+
+        .item:nth-child(26) .border-radius{
+            width: 120px;
+            height: 120px;
+            border: 30px solid red;
+            border-left-color: transparent;
+            border-top-color: transparent;
+            border-radius: 90px;
+            -webkit-transform: rotate(45deg);
+        }
+
+        .item:nth-child(26) .border-radius::before{
+            content: '';
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin-top:-20px;
+            margin-left: -20px;
+            width: 0;
+            height: 0;
+            border: 20px solid red;
+            border-top-color: transparent;
+            border-left-color: transparent;
+            border-radius: 90px;
+        }
+
+
+    </style>
+
+
+
+</head>
+<body>
+<div class="go-index"><a href="../index.html">点我首页</a></div>
+<header><h1>CSS3边框圆角</h1></header>
+<section>
+    <div class="main">
+        <div class="item" data-title="整圆">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="拱形">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="半圆">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="左上角">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="四分之一圆">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="横着椭圆">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="竖着椭圆">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="半个横着的椭圆">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="半个竖着的椭圆">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="四分之一竖着的椭圆">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="饼环">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="圆饼">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="左上角圆饼">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="对角圆饼">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="四边不同色">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="右透明色">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="圆右透明色">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="圆右红色">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="阴阳图前世">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="阴阳图前世2">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="阴阳图今生">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="旋转图">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="旋转图">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="旋转图">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="旋转图">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="旋转图">
+            <div class="border-radius"></div>
+        </div>
+        <div class="item" data-title="旋转图">
+            <div class="border-radius"></div>
+        </div>
+
+
+    </div>
+</section>
+</body>
+</html>

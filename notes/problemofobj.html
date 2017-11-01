@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>面向对象问题</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="scrollbox"></div>
+<div class="go-index"><a href="../index.html">点我首页</a></div>
+<div class="catalog">
+    <div class="catalog-box">
+        <h5>目录结构</h5>
+        <div class="catalog-box-scroll">
+            <p><a href="#return-obj-prop">return对象与return属性问题</a></p>
+            <p><a href="#prototype-obj-prop">原型定义对象与原型定义属性问题</a></p>
+            <p><a href="#shield-prototype">对象原型属性屏蔽</a></p>
+        </div>
+    </div>
+</div>
+<section class="flex-direction">
+    <h3>function相关问题</h3>
+    <div class="wrap-box">
+        <header id="return-obj-prop">问题1</header>
+        <div class="wrap-content">
+             <div class="box-code">
+                 <div class="order-number">
+                 </div>
+                 <p>
+                     &nbsp; &nbsp; var fun1 = function(){
+                 </p>
+                 <p>
+                     &nbsp; &nbsp; &nbsp; &nbsp; this.name = &#39;peter&#39;;
+                 </p>
+                 <p>
+                     &nbsp; &nbsp; &nbsp; &nbsp; return {
+                 </p>
+                 <p>
+                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; name: &#39;jack&#39;
+                 </p>
+                 <p>
+                     &nbsp; &nbsp; &nbsp; &nbsp; };
+                 </p>
+                 <p>
+                     &nbsp; &nbsp; }
+                 </p>
+                 <p>
+                     &nbsp; &nbsp; var p1 = new fun1();
+                 </p>
+                 <p>
+                     &nbsp; &nbsp; console.log(p1.name) &nbsp; <span class="annotation">//jack</span>
+                 </p>
+             </div>
+            <div class="box-code">
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var fun2 = function(){
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; this.name = &#39;peter&#39;;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; return &#39;jack&#39;;
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; var p2 = new fun2();
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(p2.name) &nbsp; &nbsp;<span class="annotation">//peter</span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="prototype-obj-prop">问题2</header>
+        <div class="wrap-content">
+            <div class="box-code">
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var fun = function(){};
+                </p>
+                <p>
+                    &nbsp; &nbsp; fun.prototype = {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; info : {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; name : &#39;peter&#39;,
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; age : 25
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; var a = new fun();
+                </p>
+                <p>
+                    &nbsp; &nbsp; var b = new fun();
+                </p>
+                <p>
+                    &nbsp; &nbsp; a.info.name = &#39;jack&#39;;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(a.info.name) &nbsp; &nbsp;<span class="annotation">//jack</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; b.info.name = &#39;tom&#39;;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(a.info.name) &nbsp; &nbsp;<span class="annotation">//tom</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(b.info.name) &nbsp; &nbsp;<span class="annotation">//tom</span>
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+            <div class="box-code">
+                <p>
+                    &nbsp; &nbsp; var fun = function(){}
+                </p>
+                <p>
+                    &nbsp; &nbsp; fun.prototype = {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; name : &#39;peter&#39;,
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; age : 25
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; var a = new fun();
+                </p>
+                <p>
+                    &nbsp; &nbsp; var b = new fun();
+                </p>
+                <p>
+                    &nbsp; &nbsp; a.name = &#39;jack&#39;;
+                </p>
+                <p>
+                    &nbsp; &nbsp; b.name = &#39;tom&#39;;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(a.name) &nbsp; &nbsp;<span class="annotation">//jack</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(b.name) &nbsp; &nbsp;<span class="annotation">//tom</span>
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap-box">
+        <header id="shield-prototype">对象原型属性屏蔽</header>
+        <div class="wrap-content">
+            <div class="box-code">
+                <p>
+                    &nbsp; function Product(){
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; this.name=&#39;神仙&#39;;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; this.description = &#39;&#39;;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; this.buy = function(){
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert(&#39;构造函数对象&#39;)
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; Product.prototype={
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; name:&#39;王书奎&#39;,
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; buy:function(){
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert(&#39;原型对象&#39;)
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; var product = new Product()
+                </p>
+                <p>
+                    &nbsp; &nbsp;<span class="annotation"> /*原型属性屏蔽理论 -- 乌云蔽日*/</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(product.buy()) &nbsp; &nbsp;<span class="annotation">// 构造函数对象</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; <span class="annotation">/*清除乌云*/</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; delete product.buy;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(product.buy()) &nbsp; &nbsp; <span class="annotation">//原型对象</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; <span class="annotation">/*被屏蔽之后如何获取 */</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(Product.prototype.buy()) &nbsp; <span class="annotation">//原型对象</span>
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+</body>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        createNum(".box-code");
+        catalogInit(".catalog")
+    }
+</script>
+</html>

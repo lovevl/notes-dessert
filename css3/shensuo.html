@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伸缩布局</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+        body{
+            font-family: "微软雅黑";
+            background-color: #f7f7f7;
+        }
+        ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        h3{
+            margin:20px 0;
+            text-align: center;
+            font-size:30px;
+        }
+        section{
+            width: 1000px;
+            margin: 0 auto;
+        }
+        .wrap-box{
+            margin-bottom: 20px;
+            background-color: rgba(69, 255, 11, 0.1);
+            box-shadow: 2px 2px 5px #ddd;
+        }
+        .wrap-box header{
+            height: 40px;
+            padding-left:10px;
+            color:#333;
+            font-size:22px;
+            line-height: 40px;
+            font-weight: normal;
+            background-color: #eee;
+        }
+        .wrap-content{
+            padding:20px;
+            background-color: #fff;
+            background-clip: content-box;
+        }
+        ul{
+            display: flex;
+        }
+        ul li{
+            width: 50px;
+            height: 50px;
+            margin:5px;
+            line-height:50px;
+            font-size: 10px;
+            text-align: center;
+            background-color: pink;
+        }
+
+        /*以上为骨架*/
+
+
+
+
+    </style>
+    <style>
+        .flex-direction .wrap-box:nth-child(3) ul{
+            flex-direction: row;
+        }
+        .flex-direction .wrap-box:nth-child(4) ul{
+            flex-direction: column;
+        }
+        .flex-direction .wrap-box:nth-child(5) ul{
+            flex-direction: row-reverse;
+        }
+        .flex-direction .wrap-box:nth-child(6) ul{
+            flex-direction: column-reverse;
+        }
+
+        .justify-content .wrap-box:nth-child(3) ul{
+            justify-content:flex-start;
+        }
+        .justify-content .wrap-box:nth-child(4) ul{
+            justify-content:flex-end;
+        }
+        .justify-content .wrap-box:nth-child(5) ul{
+            justify-content:center;
+        }
+        .justify-content .wrap-box:nth-child(6) ul{
+            justify-content:space-around;
+        }
+        .justify-content .wrap-box:nth-child(7) ul{
+            justify-content:space-between;
+        }
+
+
+        .align-items ul{
+            min-height:150px;
+        }
+        .align-items .wrap-box:nth-child(3) ul{
+            align-items: flex-start;
+        }
+        .align-items .wrap-box:nth-child(4) ul{
+            align-items: flex-end;
+        }
+        .align-items .wrap-box:nth-child(5) ul{
+            align-items: center;
+            justify-content: center;
+        }
+        .align-items .wrap-box:nth-child(6) ul{
+            align-items: baseline;
+        }
+        .align-items .wrap-box:nth-child(6) ul li{
+            line-height: 0;
+        }
+        .align-items .wrap-box:nth-child(6) ul li:last-child{
+            line-height: 30px;
+        }
+        .align-items .wrap-box:nth-child(7) ul{
+            align-items: stretch;
+        }
+        .align-items .wrap-box:nth-child(7) ul li{
+            height: auto;
+        }
+
+
+        .flex-wrap .wrap-box ul li{
+            width: 200px;
+            height: 200px;
+        }
+        .flex-wrap .wrap-box:nth-child(3) ul{
+            flex-wrap: nowrap;
+        }
+        .flex-wrap .wrap-box:nth-child(4) ul{
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .align-content .wrap-box ul{
+            min-height: 200px;
+        }
+
+        .align-content .wrap-box:nth-child(3) ul{
+            flex-wrap: wrap;
+            align-content: center;
+        }
+        .align-content .wrap-box:nth-child(4) ul{
+            flex-wrap: wrap;
+            align-content: space-around;
+        }
+
+
+        .flex .wrap-box:nth-child(3) li:nth-child(1){
+            flex: 1;
+        }
+        .flex .wrap-box:nth-child(3) li:nth-child(2){
+            flex: 1;
+        }
+        .flex .wrap-box:nth-child(3) li:nth-child(3){
+            flex: 1;
+        }
+        .flex .wrap-box:nth-child(3) li:nth-child(4){
+            flex: 1;
+        }
+        .flex .wrap-box:nth-child(4) li:nth-child(1){
+            flex: 1;
+        }
+        .flex .wrap-box:nth-child(4) li:nth-child(2){
+            flex: 2;
+        }
+        .flex .wrap-box:nth-child(4) li:nth-child(3){
+            flex: 1;
+        }
+        .flex .wrap-box:nth-child(4) li:nth-child(4){
+            width: 500px;
+        }
+
+        .align-self .wrap-box ul{
+            min-height: 300px;
+        }
+        .align-self .wrap-box:nth-child(3) ul{
+            align-items: center;
+        }
+        .align-self .wrap-box:nth-child(3) ul li:nth-child(3){
+            align-self: flex-start;
+        }
+        .align-self .wrap-box:nth-child(4) ul{
+            justify-content: center;
+            align-items: center;
+        }
+        .align-self .wrap-box:nth-child(4) ul li:nth-child(3){
+            align-self: flex-end;
+        }
+
+        .order .wrap-box:nth-child(3) ul li:nth-child(1){
+            order:8;
+        }
+        .order .wrap-box:nth-child(3) ul li:nth-child(2){
+            order:4;
+        }
+        .order .wrap-box:nth-child(3) ul li:nth-child(3){
+            order:5;
+        }
+        .order .wrap-box:nth-child(3) ul li:nth-child(4){
+            order:2;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="go-index"><a href="../index.html">点我首页</a></div>
+<section class="flex-direction">
+    <h3>伸缩布局flex-direction属性</h3>
+    <div class="wrap-box">
+        <header>flex-direction</header>
+        <div class="wrap-content">
+            <p>调整主轴方向（默认为水平方向）包括row、column、row-reverse、column-reverse</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>flex-direction:row (水平方向，默认)</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>flex-direction:column (垂直方向)</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>flex-direction:row-reverse (反水平方向)</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>flex-direction:column-reverse (反垂直方向)</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="justify-content">
+    <h3>伸缩布局justify-content属性</h3>
+    <div class="wrap-box">
+        <header>justify-content</header>
+        <div class="wrap-content">
+            <p>主轴方向对齐，可以调整元素在主轴(横轴)方向上的对齐方式，包括flex-start、flex-end、center、space-around、space-between几种方式</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>justify-content:flex-start</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>justify-content:flex-end</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>justify-content:center</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>justify-content:space-around</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>justify-content:space-between</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="align-items">
+    <h3>伸缩布局align-items属性</h3>
+    <div class="wrap-box">
+        <header>justify-content</header>
+        <div class="wrap-content">
+            <p>调整侧轴方向对齐方式，包括flex-start、flex-end、center、baseline、stretch。可与justify-content同时声明</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>align-items:flex-start</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>align-items:flex-end</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>align-items:center;justify-content: center;</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>align-items:baseline（12 line-height:0; 3 line-height:30px;意思是文本文字的基线保持一致）</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>align-items:stretch; li {height:auto;}</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="flex-wrap">
+    <h3>伸缩布局flex-wrap属性</h3>
+    <div class="wrap-box">
+        <header>flex-wrap</header>
+        <div class="wrap-content">
+            <p>控制是否换行，包括wrap、nowrap。横轴可与justify-content搭配使用。纵轴与align-content搭配不可与align-items搭配</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>flex-wrap:nowrap; li {w200px;h200px;} (不换行，自己挤压)</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>flex-wrap:wrap;justify-content: center; li {w200px;h200px;}</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="align-content">
+    <h3>伸缩布局align-content属性</h3>
+    <div class="wrap-box">
+        <header>align-content</header>
+        <div class="wrap-content">
+            <p>堆栈排列，可对应用flex-wrap: wrap后产生的换行进行控制，包括flex-start、flex-end、center、space-between、space-around、stretch</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header> align-content: center; flex-wrap:wrap;</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+                <li>19</li>
+                <li>20</li>
+                <li>21</li>
+                <li>22</li>
+                <li>23</li>
+                <li>24</li>
+                <li>25</li>
+                <li>26</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>align-content: space-around; flex-wrap:wrap; </header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>9</li>
+                <li>10</li>
+                <li>11</li>
+                <li>12</li>
+                <li>13</li>
+                <li>14</li>
+                <li>15</li>
+                <li>16</li>
+                <li>17</li>
+                <li>18</li>
+                <li>19</li>
+                <li>20</li>
+                <li>21</li>
+                <li>22</li>
+                <li>23</li>
+                <li>24</li>
+                <li>25</li>
+                <li>26</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="flex-flow">
+    <h3>伸缩布局flex-flow属性</h3>
+    <div class="wrap-box">
+        <header>flex-flow</header>
+        <div class="wrap-content">
+            <p>flex-direction和flex-wrap的简写形式。例：flex-flow: column wrap</p>
+        </div>
+    </div>
+</section>
+<section class="flex">
+    <h3>伸缩布局flex属性</h3>
+    <div class="wrap-box">
+        <header>flex</header>
+        <div class="wrap-content">
+            <p>控制子元素伸缩比例。会改变原有的宽或高。附：li {w50px; h50px;}</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>li flex比例，1：1：1：1</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>li flex比例，1：2：1：w500px; </header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="align-self">
+    <h3>伸缩布局align-self属性</h3>
+    <div class="wrap-box">
+        <header>align-self</header>
+        <div class="wrap-content">
+            <p>属性同align-items，目的是覆盖父元素设置的algin-items，包括flex-start、flex-end、center、baseline、stretch</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>ul{align-items: center;} li{ align-self: flex-start;}</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>ul{align-items: center;justify-content: center;} li{align-self: flex-end;}</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<section class="order">
+    <h3>伸缩布局order属性</h3>
+    <div class="wrap-box">
+        <header>order</header>
+        <div class="wrap-content">
+            <p>控制子元素的顺序,oreder越大排越后</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>li顺序对应order序号</header>
+        <div class="wrap-content">
+            <ul>
+                <li>1：8</li>
+                <li>2：4</li>
+                <li>3：5</li>
+                <li>4：2</li>
+            </ul>
+        </div>
+    </div>
+</section>
+</body>
+</html>

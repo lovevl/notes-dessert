@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>dom,数组，面向对象笔记</title>
+    <link rel="stylesheet" href="css/base.css">
+    <style>
+
+    </style>
+</head>
+<body>
+<div class="scrollbox"></div>
+<div class="go-index"><a href="../index.html">点我首页</a></div>
+<div class="catalog">
+    <div class="catalog-box">
+        <h5>目录结构</h5>
+        <div class="catalog-box-scroll">
+            <p><a href="#dom_id">dom对象</a></p>
+            <p><a href="#concat_id">concat</a></p>
+            <p><a href="#indexof_id">indexOf</a></p>
+            <p><a href="#chartat_id">charAt</a></p>
+            <p><a href="#substr_id">substr(fromIndex,length)</a></p>
+            <p><a href="#substring_id">substring(startIndex,endIndex)</a></p>
+            <p><a href="#arr_slice_id">slice(startIndex,endIndex)</a></p>
+            <p><a href="#split_id">split()</a></p>
+            <p><a href="#arr_join_id">Join()</a></p>
+            <p><a href="#zifuc_id">字符串大小写转换</a></p>
+            <p><a href="#shift_unshift_id">shift与unshift,pop与push</a></p>
+            <p><a href="#sort_reverse_id">数组排序sort与reverse</a></p>
+            <p><a href="#array_splice_id">splice(start,deleteCount,val1,val2,...)</a></p>
+            <p><a href="#new_date_id">获取 new Date()</a></p>
+            <p><a href="#new_date_id_set">设置 new Date()</a></p>
+            <p><a href="#regexp_id">正则表达式</a></p>
+            <p><a href="#base_replace_id">replace基础用法</a></p>
+            <p><a href="#pro_replace_id">replace高级用法</a></p>
+            <p><a href="#exp_replace_id">replace用法案例</a></p>
+            <p><a href="#obj_arr_id">面向对象的属性</a></p>
+            <p><a href="#obj_prop_id">面向对象的属性的权限设置</a></p>
+            <p><a href="#hasownprop_id">面向对象的hasOwnProperty</a></p>
+            <p><a href="#obj_create_id">object方式创建对象</a></p>
+            <p><a href="#factory_create_id">工厂模式创建对象</a></p>
+            <p><a href="#constructor_create_id">构造函数创建对象</a></p>
+            <p><a href="#prototype_create_id">原型方式创建对象</a></p>
+            <p><a href="#two_create_id">混合模式创建对象</a></p>
+            <p><a href="#zimianl_create_id">字面量方式创建对象</a></p>
+            <p><a href="#stoppropagetion_id">阻止冒泡</a></p>
+            <p><a href="#preventdefault_id">阻止默认行为</a></p>
+        </div>
+    </div>
+</div>
+<section class="flex-direction">
+    <h3>内置对象</h3>
+    <div class="wrap-box">
+        <header id="dom_id">dom对象</header>
+        <div class="wrap-content">
+            <p>document.title = 'xmmrh'<i class="blank-2"></i>//设置文档标题等价于HTML的title标签</p>
+            <p>document.bgColor = 'red'<i class="blank-2"></i>//设置页面背景色</p>
+            <p>document.fgColor  = 'green'<i class="blank-2"></i>//设置前景色(文本颜色)</p>
+            <p>document.linkColor = 'blue'<i class="blank-2"></i>//未点击过的链接颜色</p>
+            <p>document.alinkColor = 'red'<i class="blank-2"></i>//激活链接(焦点在此链接上)的颜色</p>
+            <p>document.vlinkColor = 'orange'<i class="blank-2"></i>//已点击过的链接颜色</p>
+        </div>
+    </div>
+</section>
+<section class="flex-direction">
+    <h3>字符串常用函数，方法</h3>
+    <div class="wrap-box">
+        <header id="concat_id">concat方法</header>
+        <div class="wrap-content">
+            <h5>1.字符contact</h5>
+            <p>var s1="a";<i class="blank-2"></i>var s2="b";<i class="blank-2"></i>var s3="c";</p>
+            <p>console.log(s1.concat(s2,s3));<i class="blank-2"></i>//abc</p>
+            <h5 id="arr_contact_id">2.数组中的concat 返回一个新数组</h5>
+            <p>var arr = [1, 2, 3];</p>
+            <p>console.log(arr.concat(4,5,6));<i class="blank-2"></i>//[1,2,3,4,5,6]</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="indexof_id">indexOf方法  找到匹配项返回索引值，如果没找到返回-1</header>
+        <div class="wrap-content">
+            <h5>常用方法：找到匹配项返回索引值，如果没找到返回-1</h5>
+            <p>var myString="JavaScript";</p>
+            <p>var a1=myString.indexOf("v");//2</p>
+            <p>var a2=myString.indexOf("S");//4</p>
+            <p>var a3=myString.indexOf("Script");//4</p>
+            <p>var a4=myString.indexOf("key");// 如果没有匹配项返回 -1</p>
+            <h5>完整的indexof用法：indexOf（str，fromIndex）表示从索引位置fromIndex开始查找，如果fromIndex省略，则表示默认从起始索引0开始查找；
+                若fromIndex为负，则从索引0开始查找。返回的索引值仍然是在整个字符串中的索引值</h5>
+            <p>var b1 = myString.indexOf("v",5);// 从下标5开始查找，而v在索引2，所以找不到，返回-1</p>
+            <p>var b2 = myString.indexOf("v",1);//2</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="chartat_id">charAt方法 返回指定索引位置的字符，若索引越界，返回空字符串。</header>
+        <div class="wrap-content">
+            <h5>常用方法：找到匹配项返回索引值，如果没找到返回-1</h5>
+            <p>var myString="JavaScript";</p>
+            <p>console.log(myString.charAt(1));//a</p>
+            <p>console.log(myString.charAt(1000));//若索引越界，返回空字符串</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="substr_id">substr(fromIndex,length) 从起始索引fromIndex开始截取长度length的字符串</header>
+        <div class="wrap-content">
+            <h5>正向截取</h5>
+            <p>var myString="JavaScript";</p>
+            <p>console.log(myString.substr(1,1));//a <i class="blank-3"></i>表示从第1个索引值开始截取，截取1个字符</p>
+            <p>console.log(myString.substr(1,2));//av <i class="blank-3"></i>表示从第1个索引值开始截取，截取2个字符</p>
+            <h5>反向截取</h5>
+            <p>console.log(myString.substr(-1,1));//t <i class="blank-3"></i>表示从倒数第一个开始截取，截取1个字符</p>
+            <p>console.log(myString.substr(-4,1));//r <i class="blank-3"></i>表示从倒数第四个开始截取，截取1个字符</p>
+            <p>console.log(myString.substr(-6,2));//Sc <i class="blank-3"></i>表示从倒数第6个开始截取，截取2个字符</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="substring_id">substring(startIndex,endIndex)  截取起始索引到结束索引的子字符串，包头不包尾</header>
+        <div class="wrap-content">
+            <p>myString="JavaScript";</p>
+            <p>console.log(myString.substring(1,3)) //av</p>
+            <p>console.log(myString.substring(4)) //Script  //如果省略个数,则自动获取后面所有</p>
+            <p>console.log(myString.substring(-1,1));//J   startIndex或者endIndex为负，则会被替换为0。</p>
+            <p>console.log(myString.substring(3,3));//返回空   startIndex = endIndex，则返回空字符串。</p>
+            <p>console.log(myString.substring(3,1));//等价于myString.substring(1,3) startIndex > endIndex，则执行方法时，两个值会被交换。</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="arr_slice_id">slice(startIndex,endIndex)  截取起始索引到结束索引的子字符串，包头不包尾</header>
+        <div class="wrap-content">
+            <p>myString="JavaScript";</p>
+            <p>console.log(myString.substring(1,3)) //av</p>
+            <p>console.log(myString.substring(4)) //Script  //如果省略个数,则自动获取后面所有</p>
+            <h5>基本用法和substring用法一样，不同点如下:</h5>
+            <p>console.log(myString.slice(-1,3)) //空   负数索引值将它作为 数组长度 + 负数 处理。也可以理解为负数表示从右边开始算索引</p>
+            <p>console.log(myString.slice(2,-3)) //vaScr   </p>
+            <p>slice可以对数组操作，substring不行。</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="split_id">split()分割  按给定字符串分割，返回分割后的多个字符串组成的字符串数组。</header>
+        <div class="wrap-content">
+            <p>var s="a,bc,d";</p>
+            <p>console.log(s.split(","));//["a", "bc", "d"]</p>
+            <p>var s="a1b1c1d1";</p>
+            <p>console.log(s.split("1"));//["a", "b", "c", "d", ""]</p>
+            <h5>split()还可以结合正则表达式</h5>
+            <p>var myString = 'javascript is a good script language';</p>
+            <p>console.log(myString.split(/\s/)); //["javascript", "is", "a", "good", "script", "language"]</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="arr_join_id">Join()合并  使用给定分隔符将一个数组合并为一个字符串</header>
+        <div class="wrap-content">
+            <p>var myList=new Array("jpg","bmp","gif","ico","png");</p>
+            <p>var imgString=myList.join("|");//结果是jpg|bmp|gif|ico|png</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="zifuc_id">字符串大小写转换</header>
+        <div class="wrap-content">
+            <p>var myString="JavaScript";</p>
+            <p>myString = myString.toLowerCase();//javascript</p>
+            <p>myString = myString.toUpperCase();//JAVASCRIPT</p>
+        </div>
+    </div>
+</section>
+<section class="flex-direction">
+    <h3>数组容器</h3>
+    <div class="wrap-box">
+        <header id="shift_unshift_id">shift unshift  从数组开头开始添加或者删除  pop push 从数组末尾添加或者删除</header>
+        <div class="wrap-content">
+            <h5>shift：删除原数组第一项，并返回删除元素的值；如果数组为空则返回undefined</h5>
+            <p>var arr1 = [1,2,3,4,5];</p>
+            <p>var result = arr1.shift(); //arr1=[2,3,4,5] result=1</p>
+            <h5>unshift：将参数添加到原数组开头，并返回数组的长度</h5>
+            <p>result = arr1.unshift(-2,-1); //arr1=[-2,-1,1,2,3,4,5] result=7</p>
+            <h5>pop：删除原数组最后一项，并返回删除元素的值；如果数组为空则返回undefined</h5>
+            <p>result = arr1.pop(); //arr1=[1,2,3,4] result=5</p>
+            <h5>push：将参数添加到原数组末尾，并返回数组的长度</h5>
+            <p>result = arr1.push(6,7); //arr1=[1,2,3,4,5,6,7] result=7</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header >数组合并concat</header>
+        <div class="wrap-content">
+            <a href="#arr_contact_id">同上</a>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="sort_reverse_id">排序 sort 从小到大 reverse 从大到小</header>
+        <div class="wrap-content">
+            <h5>sort(orderfunction)：按指定的参数对数组进行排序</h5>
+            <p>var arr1 = [1,6,3,4,5];</p>
+            <p>result = arr1.sort(); //[1,3,4,5,6]</p>
+            <h5>reverse：将数组反序</h5>
+            <p>arr1 = [1,2,3,100,5,8,34];</p>
+            <p>result = arr1.reverse(); //[34,8,5,100,3,2,1]</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>slice(start,end) 数组截取</header>
+        <div class="wrap-content">
+            <a href="#arr_slice_id">同字符串截取上</a>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>join(separator) 数组拼接成字符串</header>
+        <div class="wrap-content">
+            <a href="#arr_join_id">同字符串合并上</a>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="array_splice_id">splice(start,deleteCount,val1,val2,...)</header>
+        <div class="wrap-content">
+            <h5>从start位置开始删除deleteCount项，并从该位置起插入val1,val2,...,返回被删除掉的数组</h5>
+            <p>arr1 = [1,2,3,4,5];</p>
+            <p>result = arr1.splice(2,2,7,8,9); //arr1=[1,2,7,8,9,5] result=[3,4]</p>
+            <p>result = arr1.splice(0,1); //result=1 同shift</p>
+            <p>arr1.splice(0,0,-2,-1);  //arr1=[-2,-1,1,2,3,4,5]  同unshift往第一个添加</p>
+            <p>result = arr1.splice(arr1.length-1,1);  //同pop，删除最后一个</p>
+            <p>arr1.splice(arr1.length,0,6,7);  //同push，往最后一个添加</p>
+        </div>
+    </div>
+</section>
+<section class="flex-direction">
+    <h3>具体的某个日期或者时间</h3>
+    <div class="wrap-box">
+        <header id="new_date_id">获取 new Date()</header>
+        <div class="wrap-content">
+            <p>date = new Date();</p>
+            <p>console.log(date.getFullYear())  //获取完整的年份(4位,1970-????)</p>
+            <p>console.log(date.getMonth())     //获取当前月份(0-11,0代表1月)</p>
+            <p>console.log(date.getDate());　　 //获取几号   - 1 - 31 比如25</p>
+            <p>console.log(date.getDay());　　  //获取星期几 - 比如星期3的3</p>
+            <p>console.log(date.getHours())     //获取小时    12</p>
+            <p>console.log(date.getMinutes());    //获取分   23</p>
+            <p>console.log(date.getSeconds());   //获取秒   45</p>
+            <p>console.log(date.getMilliseconds());　　// 获取毫秒   375</p>
+            <p>console.log(date.getTime());　　  // 获取相对于1970-01-01的毫秒值   1443085759313</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="new_date_id_set">设置 new Date()</header>
+        <div class="wrap-content">
+            <p>setFullYear(year, opt_month, opt_date) ：设置Date对象的年份值；4位年份。可选月份，可选日期</p>
+            <p>setMonth(month, opt_date) ：设置Date对象的月份值。0表示1月，11表示12月。可选日期</p>
+            <p>setDate(date) ：设置Date对象的月份中的日期值；值的范围1~31 。</p>
+            <p>setHours(hour, opt_min, opt_sec, opt_msec) ：设置Date对象的小时值。可选分钟，可选秒，可选毫秒</p>
+            <p>setMinutes(min, opt_sec, opt_msec) ：设置Date对象的分钟值。可选秒，可选毫秒</p>
+            <p>setSeconds(sec, opt_msec) ：设置Date对象的秒数值。可选毫秒</p>
+            <p>setMilliseconds(msec) ：设置Date对象的毫秒值。</p>
+        </div>
+    </div>
+</section>
+<section class="flex-direction">
+    <h3>正则表达式</h3>
+    <div class="wrap-box">
+        <header id="regexp_id">正则表达式</header>
+        <div class="wrap-content">
+            <h5>对象写法:</h5>
+            <p>var pattern = new RegExp('[bc]at','i');</p>
+            <h5>字面量写法</h5>
+            <p>var expression = /pattern/flags</p>
+            <p>var pattern = /a/i; //匹配字符串中所有'a'的实例</p>
+            <h5>三个标志flags</h5>
+            <p>[a]g:表示全局模式(global)</p>
+            <p>[b]i:表示不区分大小写(ignoreCase)</p>
+            <p>[c]m:表示多行模式(multiline)</p>
+            <h5>正则表达式基础知识</h5>
+            <p>星号(*) : 星号代表匹配它前面一个字符任意遍(0或任意次)</p>
+            <p>加号(+): 加号是一个与星号(*)类似的通配符，它也是数量词，表示匹配前面的字符一次或多次（至少一次).</p>
+            <p>问号(?): 问号也是一个数量词，它代表匹配前一个字符0或1次。</p>
+            <p>中括号[]： 中括号用来表示一个字符集合，如:[a-z]表示小写字母的集合，</p>
+            <p>脱字符^ (caret).表示，匹配任何不在该集合中的字符，与上面的用法刚好相反</p>
+            <p>\w -- (小写w) 表示字母或数字，等价于 [a-zA-Z0-9]</p>
+            <p>\W -- (大写W)非字母且非数字，与\w相反 等价于 '[^A-Za-z0-9_]'</p>
+            <p>\s  --  (小写s)匹配一个空格字符，包括：空格，换行，回车,tab,等价于[ \n\r\t\f]</p>
+            <p>\S --  (大写S)匹配非空格字符，\s的相反 等价于 [^ \f\n\r\t\v]。</p>
+            <p>\d -- 表示10进制数字，等价于 [0-9]</p>
+            <p>\D --	匹配一个非数字字符。等价于 [^0-9]。</p>
+            <p>\f	匹配一个换页符。等价于 \x0c 和 \cL。</p>
+            <p>\n	匹配一个换行符。等价于 \x0a 和 \cJ。</p>
+            <p>\r	匹配一个回车符。等价于 \x0d 和 \cM。</p>
+            <p>\t	匹配一个制表符。等价于 \x09 和 \cI。</p>
+            <p>\v	匹配一个垂直制表符。等价于 \x0b 和 \cK。</p>
+            <p>大括号:{} 指定重复前面一个字符多少遍:{N} 重复N遍;{n,m} 重复 n~m 遍;{n,}  至少重复n遍;{,m} 至多重复m遍</p>
+            <p>^	    匹配输入字符串的开始位置。</p>
+            <p>$	    匹配输入字符串的结束位置。</p>
+            <p>\b     匹配一个单词边界，也就是指单词和空格间的位置。//例如， 'er\b' 可以匹配"never" 中的 'er'，但不能匹配 "verb" 中的 'er'。</p>
+            <p>\B	和\b相反，匹配非单词边界。'er\B' 能匹配 "verb" 中的 'er'，但不能匹配 "never" 中的 'er'。</p>
+        </div>
+    </div>
+</section>
+<section class="flex-direction">
+    <h3>replace用法</h3>
+    <div class="wrap-box">
+        <header id="base_replace_id">基础用法：如果要替换全部匹配项，需要传入一个 RegExp 对象并指定其 global 属性。</header>
+        <div class="wrap-content">
+            <p>myString = "javascript is a good script language";</p>
+            <p>console.log(myString.replace("a","A"));  //只替换了第一个字符a</p>
+            <p>console.log(myString.replace(/a/,"A"));  //只替换了第一个字符a</p>
+            <p>console.log(myString.replace(new RegExp('a','gm'),"A"));  //全部替换</p>
+            <p>console.log(myString.replace(/a/g,"A")); //全部替换</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="pro_replace_id">高级用法：特殊标记$</header>
+        <div class="wrap-content">
+            <p>对于正则replace约定了一个特殊标记符$：</p>
+            <h5>1.$i (i:1-99) : 表示从左到右正则子表达式所匹配的第i组的文本。</h5>
+            <p>案例1 - 匹配后替换:将把所有的花引号替换为直引号：</p>
+            <p>myString = '"a", "b"';</p>
+            <p>myString = myString.replace(/"([^"]*)"/g, "'$1'"); //'a', 'b'</p>
+            <p>案例2 - 匹配后替换</p>
+            <p>myString= "javascript is a good script language";</p>
+            <p>console.log(myString.replace(/(javascript)\s*(is)/g,"$1 $2 fun. it $2")); //javascript is fun. it is a good script language
+            </p>
+            <p>案例3 - 分组匹配后颠倒</p>
+            <p>myString = "itcast , cn";</p>
+            <p>myString = myString.replace(/(\w+)\s*,\s*(\w+)/, "$2 $1");  //cn itcast</p>
+            <p>案例4 - 分组匹配后颠倒</p>
+            <p>myString = "boy & girl";</p>
+            <p>myString.replace(/(\w+)\s*&\s*(\w+)/,"$2 & $1"); //理论上：girl & boy但结果没变</p>
+            <p>myString = "boy + girl";</p>
+            <p>myString.replace(/(\w+)\s*\+\s*(\w+)/g,"$2 $1"); //理论上：girl boy但结果没变</p>
+            <p>myString.replace(/(\w+)\s*\+\s*(\w+)/g,function(m,p1,p2){ </p>
+            <p>&nbsp;&nbsp; console.log(p2+" & "+p1);</p>
+            <p>});   //girl & boy 该方法参考以下 <a href="#regexp-pro-id"></a>高级用法</p>
+            <h5>2.$&:表示与正则表达式匹配的全文本。</h5>
+            <p>myString = "boy";</p>
+            <p>myString.replace(/\w+/g,"$&-$&")    //理论上：boy-boy但结果没变</p>
+            <h5>3.$`(`:切换技能键)：表示匹配字符串的左边文本。</h5>
+            <p>myString = "javascript";</p>
+            <p>myString.replace(/script/,"$& != $`")   //理论上：javascript != java 但结果没变</p>
+            <h5>4.$'(‘:单引号)：表示匹配字符串的右边文本。</h5>
+            <p>myString = "javascript";</p>
+            <p>myString.replace(/java/,"$& is $'") //理论上： javascript is script 但结果没变</p>
+            <h5>5.$$：表示$转移。</h5>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header>高级用法：第二个参数可以是函数</header>
+        <div class="wrap-content">
+            <p>myString = "bbabc";</p>
+            <p>myString.replace(/(a)(b)/g, function(){</p>
+            <p>&nbsp;&nbsp;console.log(arguments)  // ["ab", "a", "b", 2, "bbabc"]</p>
+            <p>});</p>
+            <p>参数将依次为：</p>
+            <p>1、整个正则表达式匹配的字符。</p>
+            <p>2、第一分组匹配的内容、第二分组匹配的内容…… 以此类推直到最后一个分组。</p>
+            <p>3、此次匹配在源自符串中的下标（位置）。</p>
+            <p>4、源自符串</p>
+            <h5>举例1  首字母大写 -- 一个参数 表示匹配的整个字符串</h5>
+            <p>myString = 'aaa bbb ccc';</p>
+            <p>myString=myString.replace(/\b\w+\b/g, function(word){</p>
+            <p>&nbsp;&nbsp;return word.substring(0,1).toUpperCase()+word.substring(1);</p>
+            <p>});    // Aaa Bbb Ccc</p>
+            <p>举例2  首字母大写 -- 多个参数 - 第一个表示匹配的整个字符串，后面的表示分组中的内容</p>
+            <p>myString = "i am a boy !"</p>
+            <p>myString = myString.replace( /(^|\s)([a-z])/g , function(m,p1,p2){ </p>
+            <p>&nbsp;&nbsp;return p1+p2.toUpperCase();</p>
+            <p>});   //I Am A Boy！</p>
+            <p></p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="exp_replace_id">replace用法案例</header>
+        <div class="wrap-content">
+            <h5>案例1:关键字变色</h5>
+            <p>var myString="温泉幼儿园是中国最有前景，口碑最好的幼儿园，我们的宗旨是：一切为了孩子，为了孩子一切";</p>
+            <p>myString=myString.replace(/(幼儿园)/g,"&lt;font color=red&gt;$1&lt;/font&gt;");</p>
+            <p>document.write(myString);</p>
+            <h5>案例2:关键字变色-函数方法</h5>
+            <p>myString=myString.replace(/(幼儿园)/g,test);</p>
+            <p>document.write(myString);</p>
+            <p>function test(str){</p>
+            <p>&nbsp;&nbsp;return "&lt;font color=red&gt;$1&lt;/font&gt;"</p>
+            <p>}</p>
+        </div>
+    </div>
+</section>
+<div class="cut-off-line"></div>
+<section class="flex-direction">
+    <h3>面向对象</h3>
+    <div class="wrap-box">
+        <header id="obj_arr_id">属性的删除</header>
+        <div class="wrap-content">
+            <p>
+                function Foo(){}
+            </p>
+            <p>
+                Foo.prototype.bar = 42;
+            </p>
+            <p>
+                var foo = new Foo();
+            </p>
+            <p>
+                delete foo.bar;
+            </p>
+            <p>
+                alert(foo.bar); // 42
+            </p>
+            <p>
+                delete Foo.prototype.bar; // delete it from the prototype Object
+            </p>
+            <p>
+                alert(foo.bar); // undefined
+            </p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="obj_prop_id">属性的权限设置，set，get</header>
+        <div class="wrap-content">
+            <p>
+                var NBAMember= {}
+            </p>
+            <p>
+                //将属性name设置成无法修改
+            </p>
+            <p>
+                //这样别人就无法修改了
+            </p>
+            <p>
+                //创建一个name属性
+            </p>
+            <p>
+                Object.defineProperty(NBAMember,&quot;name&quot;,{ writable: false,value: &quot;火箭队&quot; });
+            </p>
+            <p>
+                alert(NBAMember.name); //火箭队
+            </p>
+            <p>
+                NBAMember.name = &quot;小火箭&quot;;//改不了。严格模式下会报错
+            </p>
+            <p>
+                alert(NBAMember.name); //火箭队
+            </p>
+            <p>
+                //创建一个age属性
+            </p>
+            <p>
+                Object.defineProperty(NBAMember, &quot;age&quot;, {
+            </p>
+            <p>
+                &nbsp; &nbsp; get: function () {return age+1;},
+            </p>
+            <p>
+                &nbsp; &nbsp; set: function (value) {
+            </p>
+            <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; if(value&gt;100)
+            </p>
+            <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; {
+            </p>
+            <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert(&#39;值必须在0-100之间&#39;);
+            </p>
+            <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; }else{
+            </p>
+            <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; age = value;
+            </p>
+            <p>
+                &nbsp; &nbsp; &nbsp; &nbsp; }
+            </p>
+            <p>
+                &nbsp; &nbsp; }
+            </p>
+            <p>
+                });
+            </p>
+            <p>
+                NBAMember.age =12;
+            </p>
+            <p>
+                alert(NBAMember.age)
+            </p>
+            <p>
+                NBAMember.age =172;
+            </p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="hasownprop_id">hasOwnProperty : 看是不是对象自身下面的属性</header>
+        <div class="wrap-content">
+            <p>
+                var arr = [];
+            </p>
+            <p>
+                arr.num = 10;
+            </p>
+            <p>
+                Array.prototype.num2 = 20;
+            </p>
+            <p>
+                alert( &nbsp;arr.hasOwnProperty(&#39;num&#39;) &nbsp;); &nbsp;//true
+            </p>
+            <p>
+                alert( &nbsp;arr.hasOwnProperty(&#39;num2&#39;) &nbsp;); &nbsp;//false
+            </p>
+        </div>
+    </div>
+</section>
+<section class="flex-direction">
+    <h3>多种方式创建对象</h3>
+    <div class="wrap-box">
+        <header id="obj_create_id">object</header>
+        <div class="wrap-content">
+            <div class="box-code">
+                <p>
+                    <span class="annotation">//利用内置对象形式创建</span>
+                </p>
+                <p>
+                    var boy = new Object();
+                </p>
+                <p>
+                    boy.name = &#39;剑侠客&#39;;
+                </p>
+                <p>
+                    boy.image = &#39;男性头像&#39;;
+                </p>
+                <p>
+                    boy.HealthPoint_HP = 100;
+                </p>
+                <p>
+                    boy.MagicPoint_MP = 100;
+                </p>
+                <p>
+                    <span class="annotation">//技能</span>
+                <p>
+                    boy.technologys =[];
+                </p>
+                <p>
+                    <span class="annotation">//方法</span>
+                </p>
+                <p>
+                    boy.attack = function(){
+                </p>
+                <p>
+                    }
+                </p>
+                <p>
+                    var girl=new Object();
+                </p>
+                <p>
+                    girl.name=&#39;劲舞天使&#39;
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="factory_create_id">工厂模式创建</header>
+        <div class="wrap-content">
+            <div class="box-code">
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function createPerson(name){
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; var obj = new Object();
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; obj.name = name;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; obj.HP=100;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; obj.MP=100;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; obj.technologys=[&#39;普通攻击&#39;,&#39;横扫千军&#39;,&#39;地狱火&#39;,&#39;漫天飞雪&#39;];
+                </p>
+                <p><span class="annotation">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;//共同的方法</span></p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; obj.attack = function(){
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; alert(obj.name+&#39;发出攻击，导致对方10点伤害值&#39;)
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; };
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; obj.run = function(){
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; };
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="annotation">//3.对象返回</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return obj;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; var boy = createPerson(&#39;剑侠客&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; boy.attack();
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; var girl = createPerson(&#39;炫舞天使&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; girl.attack();
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="constructor_create_id">构造函数创建</header>
+        <div class="wrap-content">
+            <div class="box-code">
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var Role =function(name) {
+                </p>
+                <p>
+                    <span class="Apple-tab-span" style="white-space:pre"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.name=name;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; this.name2={nickName:&#39;剑侠客&#39;,wechat:&#39;canldeyous&#39;}
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.age=1111;
+                </p>
+                <p>
+                    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">//存在的问题 -- 每创建一次都需要分配内存</span>
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.attack=function() {
+                </p>
+                <p>
+                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(&#39;11111&#39;);
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} &nbsp;&nbsp;
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;}
+                </p>
+                <p>
+                    &nbsp; &nbsp; var boy &nbsp;= new Role(&#39;剑侠客&#39;)
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(boy.name)  <span class="annotation">//剑侠客</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; var girl &nbsp;= new Role(&#39;可爱宝宝&#39;)
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(girl.name)   <span class="annotation">//可爱宝宝</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; <span class="annotation">/*修改*/</span>
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;boy.name2.nickName=&#39;东方不败&#39;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(boy.name2.nickName)  <span class="annotation">//东方不败</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; girl.name2.nickName=&#39;西方失败&#39;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(boy.name2.nickName)  <span class="annotation">//东方不败</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(girl.name2.nickName)   <span class="annotation">//西方失败</span>
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="prototype_create_id">原型方式创建</header>
+        <div class="wrap-content">
+            <div class="box-code">
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var Role =function() {}
+                </p>
+                <p>
+                    &nbsp; &nbsp; <span class="annotation">//属性</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; Role.prototype.name=&#39;&#39;;
+                </p>
+                <p>
+                    &nbsp; &nbsp; <span class="annotation">//对象</span>
+                </p>
+                <p>&nbsp; &nbsp; Role.prototype.name1={nickName:'剑侠客',wechat:'canldeyous'};</p>
+                <p>
+                    &nbsp; &nbsp; <span class="annotation">//属性</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; Role.prototype.HP=100;
+                </p>
+                <p>
+                    &nbsp; &nbsp; <span class="annotation">//属性</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; Role.prototype.MP=100;
+                </p>
+                <p>
+                    &nbsp; &nbsp; Role.prototype.technologys=[&#39;普通攻击&#39;,&#39;横扫千军&#39;,&#39;地狱火&#39;,&#39;漫天飞雪&#39;];
+                </p>
+                <p>
+                    &nbsp; &nbsp; Role.prototype.run=function() {
+                </p>
+                <p>
+                    &nbsp; &nbsp; alert(&#39;run&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+            </div>
+                <h5>存在的问题:</h5>
+            <div class="box-code">
+                <p>
+                    &nbsp; &nbsp; <span class="annotation">//值类型没问题</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; var boy = new Role()
+                </p>
+                <p>
+                    &nbsp; &nbsp; boy.name=&#39;剑侠客&#39;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(boy.name)   <span class="annotation">//剑侠客</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; var girl = new Role()
+                </p>
+                <p>
+                    &nbsp; &nbsp; girl.name = &#39;可爱宝贝&#39;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(boy.name)   <span class="annotation">//剑侠客</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(girl.name)   <span class="annotation">//可爱宝贝</span>
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+            <div class="box-code">
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">/*引用类型有问题*/</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; var boy = new Role()
+                </p>
+                <p>
+                    &nbsp; &nbsp; boy.name1.nickName=&#39;剑侠客&#39;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(boy.name1.nickName)  <span class="annotation">//剑侠客</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; var girl = new Role()
+                </p>
+                <p>
+                    &nbsp; &nbsp; girl.name1.nickName = &#39;可爱宝贝&#39;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(boy.name1.nickName)  <span class="annotation">//可爱宝贝  (name1是引用对象。值会同时发生改变)</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(girl.name1.nickName)  <span class="annotation">//可爱宝贝</span>
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="two_create_id">混合模式创建</header>
+        <div class="wrap-content">
+            <div class="box-code">
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var Role =function() {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; this.name = {nickName:&#39;剑侠客&#39;,accountName:&#39;876791562@qq.com&#39;};
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; Role.prototype.HP=100;
+                </p>
+                <p>
+                    &nbsp; &nbsp; Role.prototype.MP=100;
+                </p>
+                <p>
+                    &nbsp; &nbsp; Role.prototype.technologys=[&#39;普通攻击&#39;,&#39;横扫千军&#39;,&#39;地狱火&#39;,&#39;漫天飞雪&#39;];
+                </p>
+                <p>
+                    &nbsp; &nbsp; Role.prototype.run=function() {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; alert(&#39;run&#39;);
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; <span class="annotation">/*引用类型有问题 -- 通过混合方式解决*/</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; var boy = new Role()
+                </p>
+                <p>
+                    &nbsp; &nbsp; boy.name.nickName=&#39;剑侠客&#39;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(boy.name.nickName)    <span class="annotation">//剑侠客</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; var girl = new Role()
+                </p>
+                <p>
+                    &nbsp; &nbsp; girl.name.nickName = &#39;可爱宝贝&#39;
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(boy.name.nickName)  <span class="annotation">//剑侠客</span>
+                </p>
+                <p>
+                    &nbsp; &nbsp; console.log(girl.name.nickName)  <span class="annotation">//可爱宝贝</span>
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="zimianl_create_id">字面量对象（最常用）</header>
+        <div class="wrap-content">
+            <div class="box-code">
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var boy = {
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; name:&#39;剑侠客&#39;
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; ,image:&#39;男性头像&#39;
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; ,age:20
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; ,sex:&#39;男&#39;
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; ,HP:100
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; ,MP:100
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; ,technologys:[&#39;普通攻击&#39;,&#39;横扫千军&#39;,&#39;地狱火&#39;,&#39;漫天飞雪&#39;]
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;};
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">//将对象转换成字符串</span>
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;console.log(JSON.stringify(boy));
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">//将字符换转换成json对象</span>
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var sboy=&#39;{&quot;name&quot;:&quot;剑侠客&quot;,&quot;sex&quot;:&quot;男&quot;,&quot;HP&quot;:100}&#39;;
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;var objBoy = JSON.parse(sboy);
+                </p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;console.log(objBoy.name);
+                </p>
+                <p>
+                    <br/>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section class="flex-direction">
+    <h3>event对象</h3>
+    <div class="wrap-box">
+        <header id="stoppropagetion_id">阻止冒泡</header>
+        <div class="wrap-content">
+            <div class="box-code">
+                <p><span class="annotation">//当同一块区域内有多个触发事件（例如，多个div互相嵌套，各有各的click事件），</span></p>
+                <p><span class="annotation">//用于防止这多个触发事件都发生响应。目的只需响应被触发的那个事件</span></p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;btn.onclick = function(event) {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; alert(&quot;点击了按钮&quot;)
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; var event = event || window.event;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; if(event &amp;&amp; event.stopPropagation)
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; event.stopPropagation(); &nbsp;// &nbsp;w3c 标准
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; else
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; {
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; event.cancelBubble = true; &nbsp;// ie 678 &nbsp;ie浏览器
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; }
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="preventdefault_id">阻止默认行为</header>
+        <div class="wrap-content">
+            <div class="box-code">
+                <p><span class="annotation">例如a标签的href属性或form标签的onsubmit属性，有自身的行为，当我们需要定义自己的事件时，该方法可以阻止自身行为触发</span></p>
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;a.on(&quot;click&quot;,function(event){
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; var event = event?event:window.event;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; if(event.preventDefault){
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; event.preventDefault();
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }else{
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; event.returnValue = false;
+                </p>
+                <p>
+                    &nbsp; &nbsp; &nbsp; &nbsp; }
+                </p>
+                <p>
+                    &nbsp; &nbsp; });
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+<script type="text/javascript" src="js/base.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript">
+    window.onload = function() {
+        createNum(".box-code");
+        catalogInit(".catalog");
+    }
+
+</script>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>手风琴菜单框</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        body{
+            font-family: "微软雅黑";
+            font-size: 14px;
+        }
+        .item{
+            width: 400px;
+            margin:auto;
+        }
+        .nav{
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            padding-left:10px;
+            background-color: #0da5d6;
+            border-bottom: 2px solid mediumseagreen;
+            transition: all 0.5s ease 0.2s;
+        }
+        .content p{
+            margin: 10px;
+        }
+        .content{
+            height: 0;
+            background-color: bisque;
+            overflow: hidden;
+            transition: all 0.5s ease 0.2s;
+        }
+        .item:hover .nav{
+            background-color: #6db5d6;
+        }
+        .item:hover .content{
+            height: 170px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="shoufengqin">
+    <div class="item">
+        <div class="nav"><h3>今日头条</h3></div>
+        <div class="content"><p>深度好文</p></div>
+    </div>
+    <div class="item">
+        <div class="nav"><h3>今日头条</h3></div>
+        <div class="content"><p>深度好文，好欣慰</p></div>
+    </div>
+    <div class="item">
+        <div class="nav"><h3>今日头条</h3></div>
+        <div class="content"><p>深度好文，好好好</p></div>
+    </div>
+    <div class="item">
+        <div class="nav"><h3>今日头条</h3></div>
+        <div class="content"><p>深度好文，非常好</p></div>
+    </div>
+
+
+</div>
+</body>
+</html>

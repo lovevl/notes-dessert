@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小米商品hover阴影悬浮过渡</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        body{
+            font-family: "微软雅黑";
+            font-size:16px;
+            color: #000;
+            background-color: #EEEEEE;
+            width: 100%;
+        }
+        .items{
+            width: 100%;
+            height:auto;
+            margin-top: 100px;
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .item{
+            float: left;
+            width: 234px;
+            height: 300px;
+            position: relative;
+            margin:7px;
+            top:0;
+            background-color: #fff;
+            overflow: hidden;
+            transition: all 0.7s;
+        }
+
+        .item .item-text{
+            z-index:1000;
+        }
+
+        .brick-item{
+            position: absolute;
+            top:20px;
+            left:50%;
+            transform: translate(-50%);
+        }
+
+        .desc{
+            width: 100%;
+            height: 100px;
+            position: absolute;
+            box-sizing: border-box;
+            padding:20px;
+            bottom: -100px;
+            background-color: #ff6700;
+            transition: all 0.7s;
+        }
+
+        .item:hover {
+            box-shadow: 0 0 15px #aaa ;
+            /*top:-3px;*/
+            /*top和下面这个有一样的3d效果*/
+            transform: translate3d(0,-3px,0);
+        }
+        .item:hover .desc{
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+dsdfkj
+<div class="items">
+    <div class="item">
+        <div>
+            <img src="images/1.jpg" alt="">
+        </div>
+    </div>
+    <div class="item">
+        <div class="brick-item">
+            <img src="images/2.jpg" alt="">
+        </div>
+        <div class="item-text"><p>快来买我，加入购物车</p></div>
+        <div class="desc"><p>快来买我啊</p></div>
+    </div>
+    <div class="item">
+        <div class="brick-item">
+            <img src="images/3.jpg" alt="">
+        </div>
+        <div class="desc"><p>快来买我啊</p></div>
+    </div>
+    <div class="item">
+        <div class="brick-item">
+            <img src="images/4.jpg" alt="">
+        </div>
+        <div class="desc"><p>快来买我啊</p></div>
+    </div>
+    <div class="item">
+        <div class="brick-item">
+            <img src="images/5.jpg" alt="">
+        </div>
+        <div class="desc"><p>快来买我啊</p></div>
+    </div>
+
+</div>
+</body>
+</html>

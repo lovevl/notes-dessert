@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
     <title>html5特性</title>
@@ -19,6 +19,7 @@
             <p><a href="#fullsreen_show_id">全屏显示</a></p>
             <p><a href="#webstorage_id">webStorage 数据缓冲保存</a></p>
             <p><a href="#drap_drop_id">drag&drop 网页内元素拖拽</a></p>
+            <p><a href="#kuayu_id">js&java跨域访问，跨域请求，外网请求。</a></p>
         </div>
     </div>
 </div>
@@ -285,6 +286,46 @@
         <header id="drap_drop_id">drag&drop 网页内元素拖拽动作</header>
         <div class="wrap-content">
             <a href="../link/drag&drop.html" target="_blank">示例链接</a>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="kuayu_id">js&java跨域访问，跨域请求，外网请求。参考 <a href="http://www.cnblogs.com/JavaMVC/articles/6943624.html" target="_blank">Ajax实现跨域的三种方法-java示例</a></header>
+        <div class="wrap-content">
+            <h5>方法一：script脚本访问</h5>
+            <div class="box-code">
+                <p><span class="annotation">js端</span></p>
+                <p>function callback(data){&nbsp;}</p>
+                <p>&lt;script src="http://localhost:8089/xmmrh/v/test.jspx?callback=jsonCall" &gt;&lt;/script&gt;</p>
+                <p><span class="annotation">java端</span></p>
+                <p>String name = request.getParameter("callback");</p>
+                <p>response.setContentType("text/html;charset=UTF-8");</p>
+                <p>response.getWriter().print(name+"('[data传参]')");<span class="annotation">//或json</span></p>
+            </div>
+            <h5>方法二：html5特性的java端response设置响应头。参考
+                <a href="https://github.com/hstarorg/HstarDoc/blob/master/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/CORS%E8%AF%A6%E8%A7%A3.md" target="_blank">跨域响应头设置参考</a></h5>
+            <div class="box-code">
+                <p><span class="annotation">js端</span></p>
+                <p>$.ajax({</p>
+                <p>&nbsp;&nbsp;url:"http://localhost:8089/xmmrh/v/test.jspx",</p>
+                <p>&nbsp;&nbsp;data:{name:'问题'},</p>
+                <p>&nbsp;&nbsp;type:"POST",</p>
+                <p>&nbsp;&nbsp;// contentType : "application/json;charset=utf-8",</p>
+                <p>&nbsp;&nbsp;success:function (data) {</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;if(data.status == "success"){</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;listContent(data.data);</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                <p>&nbsp;&nbsp;},</p>
+                <p>&nbsp;&nbsp;error:function () {</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;alert("错误");</p>
+                <p>&nbsp;&nbsp;}</p>
+                <p>});</p>
+                <p><span class="annotation">java端</span></p>
+                <p>String name = request.getParameter("callback");</p>
+                <p>response.setHeader("Access-Control-Allow-Origin", "*");</p>
+                <p>response.setHeader("Access-Control-Allow-Methods","POST,GET");</p>
+                <p>response.setContentType("application/json;charset=UTF-8");</p>
+                <p>response.getWriter().print(name+"('[json传参]')");</p>
+            </div>
         </div>
     </div>
 </section>

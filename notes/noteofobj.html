@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
     <title>dom,数组，面向对象笔记</title>
     <link rel="stylesheet" href="css/base.css">
     <style>
-
     </style>
 </head>
 <body>
@@ -16,6 +15,8 @@
         <h5>目录结构</h5>
         <div class="catalog-box-scroll">
             <p><a href="#dom_id">dom对象</a></p>
+            <p><a href="#window_fun">window方法</a></p>
+            <p><a href="#screen_obj">screen对象</a></p>
             <p><a href="#concat_id">concat</a></p>
             <p><a href="#indexof_id">indexOf</a></p>
             <p><a href="#chartat_id">charAt</a></p>
@@ -59,6 +60,33 @@
             <p>document.linkColor = 'blue'<i class="blank-2"></i>//未点击过的链接颜色</p>
             <p>document.alinkColor = 'red'<i class="blank-2"></i>//激活链接(焦点在此链接上)的颜色</p>
             <p>document.vlinkColor = 'orange'<i class="blank-2"></i>//已点击过的链接颜色</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="window_fun">window方法</header>
+        <div class="wrap-content">
+            <p>document<i class="blank-2"></i>//对 Document 对象的只读引用</p>
+            <p>location<i class="blank-2"></i>//用于窗口或框架的 Location 对象 </p>
+            <p>history	<i class="blank-2"></i>对 History 对象的只读引用。</p>
+            <p>document.tilte	<i class="blank-2"></i>设置网页的标题</p>
+            <p>moveto()  <i class="blank-2"></i>将窗口左上角的屏幕位置移动到指定的 x 和 y 位置。</p>
+            <p>moveby()    <i class="blank-2"></i>相对于目前的位置移动。</p>
+            <p>resizeTo()  <i class="blank-2"></i> 调整当前浏览器的窗口。</p>
+            <p>open()		<i class="blank-2"></i>打开新窗口显示指定的URL（有的浏览器中是打一个新的选项卡）</p>
+            <p>setTimeout(vCode, iMilliSeconds)		<i class="blank-2"></i>超时后执行代码。</p>
+            <p>setInterval(vCode, iMilliSeconds)		<i class="blank-2"></i>定时执行代码，第一次也是先待，到时再执行。</p>
+        </div>
+    </div>
+    <div class="wrap-box">
+        <header id="screen_obj">screen对象</header>
+        <div class="wrap-content">
+            <p>Screen <i class="blank-2"></i>//对象是由 JavaScript runtime engine 自动创建的，包含有关客户机显示屏幕的信息。</p>
+            <p>availHeight	<i class="blank-2"></i>//获取系统屏幕的工作区域高度，排除 Microsoft Windows 任务栏。</p>
+            <p>availWidth	<i class="blank-2"></i>//获取系统屏幕的工作区域宽度，排除 Windows 任务栏。</p>
+            <p>height		<i class="blank-2"></i>//获取屏幕的垂直分辨率。</p>
+            <p>width		<i class="blank-2"></i>//获取屏幕的水平分辨率。 </p>
+            <p>示例： <i class="blank-1"></i>document.write("屏幕工作区: " + screen.availHeight + ", " + screen.availWidth );</p>
+            <p><i class="blank-4"></i>document.write("屏幕分辨率: " + screen.height + ", " + screen.width );</p>
         </div>
     </div>
 </section>
@@ -257,15 +285,19 @@
         <header id="regexp_id">正则表达式</header>
         <div class="wrap-content">
             <h5>对象写法:</h5>
-            <p>var pattern = new RegExp('[bc]at','i');</p>
-            <h5>字面量写法</h5>
-            <p>var expression = /pattern/flags</p>
-            <p>var pattern = /a/i; //匹配字符串中所有'a'的实例</p>
+            <p>var regex = new RegExp('正则表达式','flags');</p>
+            <h5>字面量写法:</h5>
+            <p>var regex = /pattern/flags   <i class="blank-2"></i>//var regex = /a/i; //匹配字符串中所有'a'的实例</p>
+            <h5>用法：</h5>
+            <p>regex.test(str);</p>
+            <p>String.replace(regex,str);<i class="blank-2"></i>String.replaceAll(regex,str);</p>
             <h5>三个标志flags</h5>
-            <p>[a]g:表示全局模式(global)</p>
-            <p>[b]i:表示不区分大小写(ignoreCase)</p>
-            <p>[c]m:表示多行模式(multiline)</p>
+            <p>g:表示全局模式(global)</p>
+            <p>i:表示不区分大小写(ignoreCase)</p>
+            <p>m:表示多行模式(multiline)</p>
             <h5>正则表达式基础知识</h5>
+            <p>^	    匹配输入字符串的开始位置。</p>
+            <p>$	    匹配输入字符串的结束位置。</p>
             <p>星号(*) : 星号代表匹配它前面一个字符任意遍(0或任意次)</p>
             <p>加号(+): 加号是一个与星号(*)类似的通配符，它也是数量词，表示匹配前面的字符一次或多次（至少一次).</p>
             <p>问号(?): 问号也是一个数量词，它代表匹配前一个字符0或1次。</p>
@@ -283,8 +315,6 @@
             <p>\t	匹配一个制表符。等价于 \x09 和 \cI。</p>
             <p>\v	匹配一个垂直制表符。等价于 \x0b 和 \cK。</p>
             <p>大括号:{} 指定重复前面一个字符多少遍:{N} 重复N遍;{n,m} 重复 n~m 遍;{n,}  至少重复n遍;{,m} 至多重复m遍</p>
-            <p>^	    匹配输入字符串的开始位置。</p>
-            <p>$	    匹配输入字符串的结束位置。</p>
             <p>\b     匹配一个单词边界，也就是指单词和空格间的位置。//例如， 'er\b' 可以匹配"never" 中的 'er'，但不能匹配 "verb" 中的 'er'。</p>
             <p>\B	和\b相反，匹配非单词边界。'er\B' 能匹配 "verb" 中的 'er'，但不能匹配 "never" 中的 'er'。</p>
         </div>

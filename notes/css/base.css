@@ -30,7 +30,7 @@ section{
     font-size:18px;
     line-height: 30px;
     font-weight: normal;
-    background-color: #eee;
+    background-color: #f8f8f8;
 }
 .wrap-content{
     padding:10px;
@@ -129,7 +129,7 @@ h5:target,header:target{
     padding-left :25px;
 }
 .interval-line-code>p:nth-child(2n+1),.interval-line-code .order-number>p:nth-child(2n+1){
-    background-color: #f4f4f4;
+    background-color: #f8f8f8;;
 }
 .interval-line-code p{
     margin: 0;

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3d正方体</title>
+    <style>
+        body{
+            padding:100px 300px;
+        }
+        .box{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: xuanzhuan 6s infinite;
+        }
+        div{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            font-size: 14px;
+            color: #fff;
+        }
+        .qian{
+            background-color: rgba(109, 181, 214, 0.58);
+            transform: translateZ(100px);
+        }
+        .zuo{
+            background-color: rgba(127, 255, 212, 0.62);
+            transform: rotateY(90deg) translateZ(-100px);
+        }
+        .shang{
+            background-color: rgba(10, 255, 212, 0.6);
+            transform: rotateX(-90deg) translateZ(-100px);
+        }
+        .you{
+            background-color: rgba(10, 2, 212, 0.5);
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        .xia{
+            background-color: rgba(112, 202, 21, 0.53);
+            transform: rotateX(90deg) translateZ(-100px);
+        }
+        .hou{
+            background-color: rgba(202, 98, 30, 0.47);
+            transform: translateZ(-100px);
+        }
+
+        @keyframes xuanzhuan {
+            0%{
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+            100%{
+                transform: rotateY(360deg) rotateX(-360deg);
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="qian">前</div>
+    <div class="zuo">左</div>
+    <div class="shang">上</div>
+    <div class="you">右</div>
+    <div class="xia">下</div>
+    <div class="hou">后</div>
+</div>
+</body>
+</html>

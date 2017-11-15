@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8" />
     <title>css，js笔记</title>
@@ -11,8 +11,8 @@
 <body>
 <div class="scrollbox"></div>
 <div class="go-index"><a href="../index.html">点我首页</a></div>
-<div class="catalog" id="catalog_id">
-    <div class="catalog-box" id="catalog_box_id">
+<div class="catalog" >
+    <div class="catalog-box" >
         <h5>目录结构</h5>
         <div class="catalog-box-scroll" id="catalog_s_box_id">
             <p><a href="#font_id">网页显示代码的推荐使用字体</a></p>
@@ -25,6 +25,8 @@
             <p><a href="#prevent_drag_id">防止网页内文字选择拖动</a></p>
             <p><a href="#selection_text_id">js选中文字，实现点击复制</a></p>
             <p><a href="#scroll_pseudo_id">css滚动条的伪类</a></p>
+            <p><a href="#min-font-size">解决兼容谷歌，ie浏览器最低字体大小只有12px的方法(失效了)</a></p>
+            <p><a href="#daojishi_id">js倒计时</a></p>
         </div>
     </div>
 </div>
@@ -36,6 +38,10 @@
             <div class="font-code interval-line-code">
                 <p>font-family: Monaco, Menlo, Consolas, "Courier New", monospace;</p>
             </div>
+            <h5 style="margin-top: 5px">好看的字体颜色:</h5>
+            <p style="color: #34495e;"> color:#34495e;</p>
+            <h5>字体平滑清晰:</h5>
+            <p style="-webkit-font-smoothing: antialiased;">-webkit-font-smoothing: antialiased;</p>
         </div>
     </div>
     <div class="wrap-box">
@@ -277,6 +283,68 @@
             </div>
         </div>
     </div>
+    <div class="wrap-box">
+        <header id="min-font-size">解决兼容谷歌，ie浏览器最低字体大小只有12px的方法(失效了)</header>
+        <div class="wrap-content">
+            <div class="font-code interval-line-code">
+                <p>.small-font{ </p>
+                <p>&nbsp;&nbsp;&nbsp;font-size:12px;</p>
+                <p>&nbsp;&nbsp;&nbsp;-webkit-transform-origin-x: 0;</p>
+                <p>&nbsp;&nbsp;&nbsp;-webkit-transform: scale(0.90);</p>
+                <p>}</p>
+                <p>.smallsize-font {</p>
+                <p>&nbsp;&nbsp;&nbsp;font-size:10.8px;</p>
+                <p>}</p>
+            </div>
+        </div>
+    </div>
+    <div class="wrap-box" >
+        <header id="daojishi_id">js倒计时</header>
+        <div class="wrap-content" >
+            <div class="font-code interval-line-code">
+                <p>  window.onload = function(){</p>
+                <p> var demo = document.getElementById("demo");</p>
+               <p> var endTime = new Date("2015/12/12 17:30:00"); // 最终时间</p>
+                <p>setInterval(clock,1000); // 开启定时器</p>
+                <p> &nbsp;&nbsp;function clock(){</p>
+                <p> &nbsp;&nbsp;&nbsp;&nbsp;var nowTime = new Date(); // 一定是要获取最新的时间</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;//  console.log(nowTime.getTime());  获得自己的毫秒</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;var second = parseInt((endTime.getTime() - nowTime.getTime()) / 1000);</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;// 用将来的时间毫秒 -  现在的毫秒  / 1000 得到的 还剩下的秒  可能处不断 取整</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;// console.log(second);</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;// 一小时 3600 秒</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;// second / 3600  一共的小时数  /24   天数</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;var d = parseInt(second / 3600 / 24);  //天数</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;//console.log(d);</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;var h = parseInt(second / 3600  % 24)  // 小时</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;// console.log(h);</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;var m = parseInt(second / 60  % 60);</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;//console.log(m);</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;var s = parseInt(second % 60); // 当前的秒</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;console.log(s);</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;/* if(d<10)</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;{</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;d = "0" + d;</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;}*/</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;d<10 ? d="0"+d : d;
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;h<10 ? h="0"+h : h;</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;m<10 ? m="0"+m : m;</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;s<10 ? s="0"+s : s;</p>
+              <p> &nbsp;&nbsp;&nbsp;&nbsp;demo.innerHTML = "距离抢购时间还剩: "+d+"天 "+h+"小时 "+m+"分钟 "+s+"秒";</p>
+              <p> &nbsp;&nbsp;}</p>
+              <p> }</p>
+
+            </div>
+        </div>
+    </div>
+    <!--<div class="wrap-box">-->
+        <!--<header>js获取浏览器滚动多少像素的兼容性方法</header>-->
+        <!--<div class="wrap-content">-->
+            <!--<div class="font-code interval-line-code">-->
+                <!--<p>font-family: Monaco, Menlo, Consolas, "Courier New", monospace;</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
     <!--<div class="wrap-box">-->
         <!--<header>js获取浏览器滚动多少像素的兼容性方法</header>-->
         <!--<div class="wrap-content">-->
@@ -289,7 +357,6 @@
 
 
 </body>
-<script type="text/javascript" src="../dessert2/js/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="js/base.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
